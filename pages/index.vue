@@ -51,7 +51,7 @@
           retailColor: "#f43f5e",
           leisureColor: "#fde047",
           foodColor: "#f97316",
-          officeColor: "#4ade80",
+          officeColor: "#4ade81",
           hotelColor: "#06b6d4",
           mixedColor: "#d946ef"
       }),
