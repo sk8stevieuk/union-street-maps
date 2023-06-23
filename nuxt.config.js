@@ -4,9 +4,15 @@ export default {
 
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
+<<<<<<< Updated upstream
   // router: {
   //   base: 'union-street-maps'
   // },
+=======
+  router: {
+    base: 'union-street-maps'
+  },
+>>>>>>> Stashed changes
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
