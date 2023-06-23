@@ -4,7 +4,17 @@ export default {
 
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
-
+  build: {
+      /*
+       ** You can extend webpack config here
+       */
+      extend(config, ctx) {}
+  },
+  generate: {
+    fallback: true
+  },
+  ssr: false,
+  components: true,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'maps',
@@ -43,8 +53,4 @@ export default {
   modules: [
     'nuxt-leaflet',
   ],
-
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
 }
