@@ -12,8 +12,8 @@
                    <l-geo-json :geojson="geojson" :options="options" :options-style="styleFunction"></l-geo-json>
                    <l-marker v-if="userLat && userLong" :lat-lng="[userLat,userLong]">marker</l-marker>
                    <l-control class="example-custom-control">
-                      <div class="flex flex-row">
-                          <form class="mr-4">
+                      <div class="flex flex-col-reverse sm:flex-row items-end">
+                          <form class="ml-2 sm:ml-0 sm:mr-4">
                               <select class="p-2" v-model="typeFilter" :value="typeFilter" @change="toggleFilter($event)">
                                   <option value="null" disabled>Filter By</option>
                                   <option value="">All</option>
@@ -26,7 +26,7 @@
                                   <option value="empty">Empty Units</option>
                               </select>
                           </form>
-                           <ul id="key" class="text-right bg-white p-2 flex">
+                           <ul id="key" class="text-right bg-white p-2 flex flex-wrap w-3/4 sm:w-full mb-2 sm:mb-0">
                                <li class="mr-3"><span class="mr-1" :style="'background-color:' + retailColor + ';color:' + retailColor + ';'">....</span>Retail</li>
                                <li class="mr-3"><span class="mr-1" :style="'background-color:' + leisureColor + ';color:' + leisureColor + ';'">....</span>Leisure</li>
                                <li class="mr-3"><span class="mr-1" :style="'background-color:' + foodColor + ';color:' + foodColor + ';'">....</span>Food/Drink</li>
