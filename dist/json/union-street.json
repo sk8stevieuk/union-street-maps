@@ -2198,84 +2198,6 @@
       }
     },
     {
-      "id": "986e734c9d487e1d2f643023d767bc38",
-      "type": "Feature",
-      "properties": {
-        "featureid": "986e734c9d487e1d2f643023d767bc38"
-      },
-      "geometry": {
-        "coordinates": [
-          [
-            [
-              -2.10917429352844,
-              57.14355539381563
-            ],
-            [
-              -2.1088899479663894,
-              57.14323794918471
-            ],
-            [
-              -2.1089464429315967,
-              57.143222905245324
-            ],
-            [
-              -2.1089527159980435,
-              57.14322668679313
-            ],
-            [
-              -2.1089896573697615,
-              57.143217232921415
-            ],
-            [
-              -2.1090281461203517,
-              57.143256949119234
-            ],
-            [
-              -2.109064632233924,
-              57.14325049416544
-            ],
-            [
-              -2.1090900138777897,
-              57.14327975661476
-            ],
-            [
-              -2.109059989730241,
-              57.14328978079919
-            ],
-            [
-              -2.109122347574896,
-              57.143360785365616
-            ],
-            [
-              -2.109215499416706,
-              57.143339484010085
-            ],
-            [
-              -2.109362156165105,
-              57.14350536194584
-            ],
-            [
-              -2.10917429352844,
-              57.14355539381563
-            ]
-          ]
-        ],
-        "type": "Polygon"
-      },
-      "styledetails": {
-        "id": "986e734c9d487e1d2f643023d767bc38",
-        "styledata": {
-          "fillcolor": "#10CAF0",
-          "fillopacity": 0.4,
-          "fillborderwidth": 2,
-          "fillbordercolor": "#3b1513"
-        }
-      },
-      "measurement": {
-        "squaremeters": 392.56
-      }
-    },
-    {
       "id": "f6ef94db0a54127081bc8ed4a0a79b2b",
       "type": "Feature",
       "properties": {
@@ -2560,52 +2482,6 @@
       }
     },
     {
-      "id": "922f82023882fb611b56d1969d18033e",
-      "type": "Feature",
-      "properties": {
-        "featureid": "922f82023882fb611b56d1969d18033e"
-      },
-      "geometry": {
-        "coordinates": [
-          [
-            [
-              -2.110585025665614,
-              57.14317388505478
-            ],
-            [
-              -2.1101736123278556,
-              57.14328216116169
-            ],
-            [
-              -2.1100149360113107,
-              57.14310776547302
-            ],
-            [
-              -2.1104263493480744,
-              57.14299860134133
-            ],
-            [
-              -2.110585025665614,
-              57.14317388505478
-            ]
-          ]
-        ],
-        "type": "Polygon"
-      },
-      "styledetails": {
-        "id": "922f82023882fb611b56d1969d18033e",
-        "styledata": {
-          "fillcolor": "#10CAF0",
-          "fillopacity": 0.4,
-          "fillborderwidth": 2,
-          "fillbordercolor": "#3b1513"
-        }
-      },
-      "measurement": {
-        "squaremeters": 599.59
-      }
-    },
-    {
       "id": "fb07a1302b1f67069fbbcebad4c2a242",
       "type": "Feature",
       "properties": {
@@ -2652,56 +2528,12 @@
       }
     },
     {
-      "id": "be09ba78da5f5b314fbeb54829541080",
-      "type": "Feature",
-      "properties": {
-        "featureid": "be09ba78da5f5b314fbeb54829541080"
-      },
-      "geometry": {
-        "coordinates": [
-          [
-            [
-              -2.1100573262479543,
-              57.14331644080167
-            ],
-            [
-              -2.1099796239273587,
-              57.14322946501838
-            ],
-            [
-              -2.1097031672526043,
-              57.14330623447043
-            ],
-            [
-              -2.109785777086813,
-              57.143389216300335
-            ],
-            [
-              -2.1100573262479543,
-              57.14331644080167
-            ]
-          ]
-        ],
-        "type": "Polygon"
-      },
-      "styledetails": {
-        "id": "be09ba78da5f5b314fbeb54829541080",
-        "styledata": {
-          "fillcolor": "#10CAF0",
-          "fillopacity": 0.4,
-          "fillborderwidth": 2,
-          "fillbordercolor": "#3b1513"
-        }
-      },
-      "measurement": {
-        "squaremeters": 196.84
-      }
-    },
-    {
       "id": "0e43c82211e85b8006ea2c261d31dc1b",
       "type": "Feature",
       "properties": {
-        "featureid": "0e43c82211e85b8006ea2c261d31dc1b"
+        "featureid": "0e43c82211e85b8006ea2c261d31dc1b",
+        "title": "The Justice Mill",
+        "type": "food"
       },
       "geometry": {
         "coordinates": [
@@ -8323,6 +8155,1682 @@
       },
       "measurement": {
         "squaremeters": 148.22
+      }
+    },
+    {
+      "id": "ae24d3921bfd1bf24b3c0f4dc9070ccc",
+      "type": "Feature",
+      "properties": {
+        "featureid": "ae24d3921bfd1bf24b3c0f4dc9070ccc",
+        "title": "The Silver Fin",
+        "type": "office"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1105838509479895,
+              57.143174210821655
+            ],
+            [
+              -2.110427536701309,
+              57.14299688670377
+            ],
+            [
+              -2.1103934317753215,
+              57.143003825489586
+            ],
+            [
+              -2.1103380112690218,
+              57.14294137637023
+            ],
+            [
+              -2.110441747087293,
+              57.14291670508442
+            ],
+            [
+              -2.1101411432464943,
+              57.14257666776527
+            ],
+            [
+              -2.109624186998275,
+              57.142712456008496
+            ],
+            [
+              -2.1101730093945434,
+              57.143282382959
+            ],
+            [
+              -2.1105838509479895,
+              57.143174210821655
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "ae24d3921bfd1bf24b3c0f4dc9070ccc",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 2239.13
+      }
+    },
+    {
+      "id": "951997dbd978f24c676cb1ef11f96a99",
+      "type": "Feature",
+      "properties": {
+        "featureid": "951997dbd978f24c676cb1ef11f96a99",
+        "title": "Stevensons",
+        "type": "retail"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1098901438287783,
+              57.143360884272994
+            ],
+            [
+              -2.10981083721785,
+              57.14327563457647
+            ],
+            [
+              -2.1097033656422184,
+              57.143304587325645
+            ],
+            [
+              -2.1097834134368725,
+              57.14338983695521
+            ],
+            [
+              -2.1098901438287783,
+              57.143360884272994
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "951997dbd978f24c676cb1ef11f96a99",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 76.89
+      }
+    },
+    {
+      "id": "d41964a092d89ed75e9d38362a1097ea",
+      "type": "Feature",
+      "properties": {
+        "featureid": "d41964a092d89ed75e9d38362a1097ea",
+        "title": "The Capitol",
+        "type": "office"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1100606713810066,
+              57.14331588184672
+            ],
+            [
+              -2.109980081302723,
+              57.14322924482764
+            ],
+            [
+              -2.1100905195592077,
+              57.14319969103167
+            ],
+            [
+              -2.1096125691643977,
+              57.1427008268862
+            ],
+            [
+              -2.1092192245570516,
+              57.14279985155369
+            ],
+            [
+              -2.1097033356217025,
+              57.14330443517272
+            ],
+            [
+              -2.1098111571797062,
+              57.143275513404035
+            ],
+            [
+              -2.109889920965344,
+              57.1433610554993
+            ],
+            [
+              -2.1100606713810066,
+              57.14331588184672
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "d41964a092d89ed75e9d38362a1097ea",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 1768.66
+      }
+    },
+    {
+      "id": "163116d590fc2636899e451d0477f1bd",
+      "type": "Feature",
+      "properties": {
+        "featureid": "163116d590fc2636899e451d0477f1bd",
+        "title": "Pure",
+        "type": "retail"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1093615315839145,
+              57.14350540749871
+            ],
+            [
+              -2.1092145763612393,
+              57.14333822110714
+            ],
+            [
+              -2.1091223544616753,
+              57.1433614075861
+            ],
+            [
+              -2.1092678101413753,
+              57.143530220986236
+            ],
+            [
+              -2.1093615315839145,
+              57.14350540749871
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "163116d590fc2636899e451d0477f1bd",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 128.6
+      }
+    },
+    {
+      "id": "a519f84555e0b499ab189d4d9c67caa9",
+      "type": "Feature",
+      "properties": {
+        "featureid": "a519f84555e0b499ab189d4d9c67caa9",
+        "title": "Nailco",
+        "type": "leisure"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1092670603694046,
+              57.14353062776456
+            ],
+            [
+              -2.1090593736526557,
+              57.143289407419644
+            ],
+            [
+              -2.1090908640571797,
+              57.143281271798855
+            ],
+            [
+              -2.1090624487169407,
+              57.14324884962781
+            ],
+            [
+              -2.109029046660453,
+              57.14325752989768
+            ],
+            [
+              -2.1089919217112367,
+              57.14321603663154
+            ],
+            [
+              -2.1089527154891243,
+              57.14322710445805
+            ],
+            [
+              -2.1089485717421894,
+              57.14322278108878
+            ],
+            [
+              -2.108889921784453,
+              57.14323748054284
+            ],
+            [
+              -2.109174968246066,
+              57.143555183159805
+            ],
+            [
+              -2.1092670603694046,
+              57.14353062776456
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "a519f84555e0b499ab189d4d9c67caa9",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 261.56
+      }
+    },
+    {
+      "id": "16f07dddb70e9eb727be81b28afe8fb7",
+      "type": "Feature",
+      "properties": {
+        "featureid": "16f07dddb70e9eb727be81b28afe8fb7",
+        "title": "William Hill",
+        "type": "retail"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1041722560655103,
+              57.14492207662718
+            ],
+            [
+              -2.104052954495387,
+              57.14479566428406
+            ],
+            [
+              -2.1039206043157606,
+              57.144848757520805
+            ],
+            [
+              -2.1040287213632496,
+              57.14496202283803
+            ],
+            [
+              -2.1041722560655103,
+              57.14492207662718
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "16f07dddb70e9eb727be81b28afe8fb7",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 146.7
+      }
+    },
+    {
+      "id": "2e658f2d7df9ef2f01f9e0d26ea9924e",
+      "type": "Feature",
+      "properties": {
+        "featureid": "2e658f2d7df9ef2f01f9e0d26ea9924e",
+        "title": "The Grill",
+        "type": "food"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.104175052195302,
+              57.14492207662718
+            ],
+            [
+              -2.104285965373748,
+              57.144891232055386
+            ],
+            [
+              -2.104156411325107,
+              57.144756223544675
+            ],
+            [
+              -2.1040510904084613,
+              57.14479566428406
+            ],
+            [
+              -2.104175052195302,
+              57.14492207662718
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "2e658f2d7df9ef2f01f9e0d26ea9924e",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 124.96
+      }
+    },
+    {
+      "id": "da5b4f1d0c5811bad5a435e8482d5da1",
+      "type": "Feature",
+      "properties": {
+        "featureid": "da5b4f1d0c5811bad5a435e8482d5da1"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1042850333297167,
+              57.144891232055386
+            ],
+            [
+              -2.104379169724865,
+              57.14486493830151
+            ],
+            [
+              -2.1042449554595066,
+              57.14472234492695
+            ],
+            [
+              -2.104156411325107,
+              57.14475521224287
+            ],
+            [
+              -2.1042850333297167,
+              57.144891232055386
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "da5b4f1d0c5811bad5a435e8482d5da1",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 111.68
+      }
+    },
+    {
+      "id": "a36b4d76e395ed051a5d422983fb04cd",
+      "type": "Feature",
+      "properties": {
+        "featureid": "a36b4d76e395ed051a5d422983fb04cd"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.104379169724865,
+              57.1448659496003
+            ],
+            [
+              -2.1044677138593215,
+              57.144841172777205
+            ],
+            [
+              -2.1043726454201135,
+              57.14473700881021
+            ],
+            [
+              -2.104281305155922,
+              57.14476178570277
+            ],
+            [
+              -2.104379169724865,
+              57.1448659496003
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "a36b4d76e395ed051a5d422983fb04cd",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 79.05
+      }
+    },
+    {
+      "id": "be98d9489be44c9f7f01a10c24050d63",
+      "type": "Feature",
+      "properties": {
+        "featureid": "be98d9489be44c9f7f01a10c24050d63"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.104465849772396,
+              57.1448416784271
+            ],
+            [
+              -2.10456091821041,
+              57.14481538463801
+            ],
+            [
+              -2.1044639856854985,
+              57.144712231900826
+            ],
+            [
+              -2.104371713377219,
+              57.144738020112214
+            ],
+            [
+              -2.104465849772396,
+              57.1448416784271
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "be98d9489be44c9f7f01a10c24050d63",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 81.84
+      }
+    },
+    {
+      "id": "144f92aaa9bb58250919ed364fd6558d",
+      "type": "Feature",
+      "properties": {
+        "featureid": "144f92aaa9bb58250919ed364fd6558d",
+        "title": "Burger King",
+        "type": "food"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1047476357086623,
+              57.14476495300744
+            ],
+            [
+              -2.104593918115313,
+              57.1446133634862
+            ],
+            [
+              -2.1045992187211766,
+              57.14459405529121
+            ],
+            [
+              -2.1047809538075057,
+              57.14452010891907
+            ],
+            [
+              -2.104965717811666,
+              57.144702509702626
+            ],
+            [
+              -2.1047476357086623,
+              57.14476495300744
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "144f92aaa9bb58250919ed364fd6558d",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 326.47
+      }
+    },
+    {
+      "id": "183623eb5b025e046a19b9e83b39187e",
+      "type": "Feature",
+      "properties": {
+        "featureid": "183623eb5b025e046a19b9e83b39187e"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.104966306716335,
+              57.14470287169891
+            ],
+            [
+              -2.1050902510546337,
+              57.14466727287851
+            ],
+            [
+              -2.1048824620166044,
+              57.14447938964858
+            ],
+            [
+              -2.1047803902083047,
+              57.14452092181318
+            ],
+            [
+              -2.104966306716335,
+              57.14470287169891
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "183623eb5b025e046a19b9e83b39187e",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 191.53
+      }
+    },
+    {
+      "id": "3f5745afd220a69cdef2a9e49301e424",
+      "type": "Feature",
+      "properties": {
+        "featureid": "3f5745afd220a69cdef2a9e49301e424"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.105092073765377,
+              57.14466628402195
+            ],
+            [
+              -2.1052032591285013,
+              57.14463365173907
+            ],
+            [
+              -2.1049827111141326,
+              57.14443884630006
+            ],
+            [
+              -2.104880639305833,
+              57.14447938964858
+            ],
+            [
+              -2.105092073765377,
+              57.14466628402195
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "3f5745afd220a69cdef2a9e49301e424",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 189.94
+      }
+    },
+    {
+      "id": "1505137a316df496245a54876c2d7575",
+      "type": "Feature",
+      "properties": {
+        "featureid": "1505137a316df496245a54876c2d7575"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.10520393390766,
+              57.14463319114978
+            ],
+            [
+              -2.105322410113729,
+              57.14460055883768
+            ],
+            [
+              -2.1050781668586183,
+              57.144399820042224
+            ],
+            [
+              -2.1049833858944282,
+              57.14443739684535
+            ],
+            [
+              -2.10520393390766,
+              57.14463319114978
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "1505137a316df496245a54876c2d7575",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 196.98
+      }
+    },
+    {
+      "id": "c8f42986aa4f0a6d13314bc93ac81bbb",
+      "type": "Feature",
+      "properties": {
+        "featureid": "c8f42986aa4f0a6d13314bc93ac81bbb"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.105326055535187,
+              57.144601547696
+            ],
+            [
+              -2.105444531741284,
+              57.144566937637336
+            ],
+            [
+              -2.105180238666861,
+              57.14435729887694
+            ],
+            [
+              -2.1050781668586183,
+              57.144398831178535
+            ],
+            [
+              -2.105326055535187,
+              57.144601547696
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "c8f42986aa4f0a6d13314bc93ac81bbb",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 218.4
+      }
+    },
+    {
+      "id": "0ba01188d56470d0e2d3724270ca424f",
+      "type": "Feature",
+      "properties": {
+        "featureid": "0ba01188d56470d0e2d3724270ca424f",
+        "title": "So",
+        "type": "food"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1065436185668887,
+              57.14425548468236
+            ],
+            [
+              -2.1063941562759396,
+              57.14409133229685
+            ],
+            [
+              -2.106182721816424,
+              57.14415659779036
+            ],
+            [
+              -2.106334006818088,
+              57.14431382782459
+            ],
+            [
+              -2.1065436185668887,
+              57.14425548468236
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "0ba01188d56470d0e2d3724270ca424f",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 289.92
+      }
+    },
+    {
+      "id": "90fb950b289ec549c9cee09501912d7f",
+      "type": "Feature",
+      "properties": {
+        "featureid": "90fb950b289ec549c9cee09501912d7f",
+        "title": "Trailfinders",
+        "type": "retail"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.10633309169404,
+              57.1443143467622
+            ],
+            [
+              -2.1061801508433007,
+              57.14415619897949
+            ],
+            [
+              -2.105982765642409,
+              57.14421860715365
+            ],
+            [
+              -2.1061291705597682,
+              57.14436966286729
+            ],
+            [
+              -2.10633309169404,
+              57.1443143467622
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "90fb950b289ec549c9cee09501912d7f",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 267.79
+      }
+    },
+    {
+      "id": "ee64a95e5c1c0dbd9aa2bb88c4082090",
+      "type": "Feature",
+      "properties": {
+        "featureid": "ee64a95e5c1c0dbd9aa2bb88c4082090",
+        "title": "Sk:n",
+        "type": "leisure"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1061291705597682,
+              57.14437037204752
+            ],
+            [
+              -2.105982765642409,
+              57.14421860715365
+            ],
+            [
+              -2.1058585829001686,
+              57.14426044893918
+            ],
+            [
+              -2.106002373443374,
+              57.14440583104502
+            ],
+            [
+              -2.1061291705597682,
+              57.14437037204752
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "ee64a95e5c1c0dbd9aa2bb88c4082090",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 163.05
+      }
+    },
+    {
+      "id": "78a5099abb8be52a978d0e767800a908",
+      "type": "Feature",
+      "properties": {
+        "featureid": "78a5099abb8be52a978d0e767800a908",
+        "title": "Amarone",
+        "type": "food"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.106003680629982,
+              57.14440583104502
+            ],
+            [
+              -2.105712177982838,
+              57.14411506626166
+            ],
+            [
+              -2.105491263420106,
+              57.14421860715365
+            ],
+            [
+              -2.1057788445072845,
+              57.144471075511944
+            ],
+            [
+              -2.106003680629982,
+              57.14440583104502
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "78a5099abb8be52a978d0e767800a908",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 571.26
+      }
+    },
+    {
+      "id": "0995662fece4ebb797d57c6e6986561b",
+      "type": "Feature",
+      "properties": {
+        "featureid": "0995662fece4ebb797d57c6e6986561b",
+        "title": "Vaping 101",
+        "type": "retail"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1057788445072845,
+              57.144471075511944
+            ],
+            [
+              -2.1054886490459808,
+              57.14422073470348
+            ],
+            [
+              -2.105393224413035,
+              57.144263994850746
+            ],
+            [
+              -2.105670348005958,
+              57.14450227934688
+            ],
+            [
+              -2.1057788445072845,
+              57.144471075511944
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "0995662fece4ebb797d57c6e6986561b",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 238.47
+      }
+    },
+    {
+      "id": "4c5749f4b725b37a4b76517ea804ceb2",
+      "type": "Feature",
+      "properties": {
+        "featureid": "4c5749f4b725b37a4b76517ea804ceb2",
+        "title": "Cruise",
+        "type": "retail"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1056690408192935,
+              57.14450298852461
+            ],
+            [
+              -2.105442897509903,
+              57.144567523643786
+            ],
+            [
+              -2.105180152970348,
+              57.14435689761953
+            ],
+            [
+              -2.105391917226342,
+              57.144263994850746
+            ],
+            [
+              -2.1056690408192935,
+              57.14450298852461
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "4c5749f4b725b37a4b76517ea804ceb2",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 473.78
+      }
+    },
+    {
+      "id": "af31209c53d94c3fe5735a2c876645dd",
+      "type": "Feature",
+      "properties": {
+        "featureid": "af31209c53d94c3fe5735a2c876645dd"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.103626128567157,
+              57.14506467386573
+            ],
+            [
+              -2.103527858384126,
+              57.145091846257145
+            ],
+            [
+              -2.103347301035768,
+              57.14490167681316
+            ],
+            [
+              -2.1034604433002073,
+              57.14488818615206
+            ],
+            [
+              -2.103626128567157,
+              57.14506467386573
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "af31209c53d94c3fe5735a2c876645dd",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 153.95
+      }
+    },
+    {
+      "id": "2691f6e051bb61dd7d8627ece4a3e901",
+      "type": "Feature",
+      "properties": {
+        "featureid": "2691f6e051bb61dd7d8627ece4a3e901"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1035284258389026,
+              57.14509224493017
+            ],
+            [
+              -2.1034025839701656,
+              57.1451270496928
+            ],
+            [
+              -2.1032800320837737,
+              57.14499229261017
+            ],
+            [
+              -2.1034083414404563,
+              57.14496596583783
+            ],
+            [
+              -2.1035284258389026,
+              57.14509224493017
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "2691f6e051bb61dd7d8627ece4a3e901",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 136.43
+      }
+    },
+    {
+      "id": "a42e384db2f6f1a72bdf23c1425bc211",
+      "type": "Feature",
+      "properties": {
+        "featureid": "a42e384db2f6f1a72bdf23c1425bc211"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.102469918099928,
+              57.14538125906972
+            ],
+            [
+              -2.102402687922961,
+              57.14530734469912
+            ],
+            [
+              -2.1021932629455193,
+              57.145366411653214
+            ],
+            [
+              -2.1022533536351204,
+              57.1454180548148
+            ],
+            [
+              -2.102308089708771,
+              57.145431933902216
+            ],
+            [
+              -2.102469918099928,
+              57.14538125906972
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "a42e384db2f6f1a72bdf23c1425bc211",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 127.28
+      }
+    },
+    {
+      "id": "9fc4fe8123bd50b64fc3032a6fa968a4",
+      "type": "Feature",
+      "properties": {
+        "featureid": "9fc4fe8123bd50b64fc3032a6fa968a4"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1024696714466415,
+              57.14538166419183
+            ],
+            [
+              -2.1026547031736698,
+              57.145332280371576
+            ],
+            [
+              -2.1024970394838647,
+              57.1451615344989
+            ],
+            [
+              -2.1023126027137664,
+              57.145208659147556
+            ],
+            [
+              -2.1024696714466415,
+              57.14538166419183
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "9fc4fe8123bd50b64fc3032a6fa968a4",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 264.51
+      }
+    },
+    {
+      "id": "482d01bb3bf5d01f6716a62e42c866f1",
+      "type": "Feature",
+      "properties": {
+        "featureid": "482d01bb3bf5d01f6716a62e42c866f1"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1026538914701973,
+              57.14533260919822
+            ],
+            [
+              -2.1027401602816553,
+              57.145308724189846
+            ],
+            [
+              -2.102575357103774,
+              57.14514378810364
+            ],
+            [
+              -2.102502177353159,
+              57.14515056631319
+            ],
+            [
+              -2.1025051521399405,
+              57.14516057223966
+            ],
+            [
+              -2.102497417694906,
+              57.14516186332705
+            ],
+            [
+              -2.1026538914701973,
+              57.14533260919822
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "482d01bb3bf5d01f6716a62e42c866f1",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 117.7
+      }
+    },
+    {
+      "id": "5a75ce9f29c04817ce46ad769c411e36",
+      "type": "Feature",
+      "properties": {
+        "featureid": "5a75ce9f29c04817ce46ad769c411e36",
+        "title": "Geek retreat",
+        "type": "retail"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1027402342956805,
+              57.14530869076998
+            ],
+            [
+              -2.102869963669491,
+              57.14527378486616
+            ],
+            [
+              -2.1027358408411487,
+              57.145127313426116
+            ],
+            [
+              -2.1025761708061736,
+              57.145143693056895
+            ],
+            [
+              -2.1027402342956805,
+              57.14530869076998
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "5a75ce9f29c04817ce46ad769c411e36",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 177.2
+      }
+    },
+    {
+      "id": "47ae391c0e088c441a79bc323a9f337f",
+      "type": "Feature",
+      "properties": {
+        "featureid": "47ae391c0e088c441a79bc323a9f337f",
+        "title": "Coral",
+        "type": "retail"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1029824251170908,
+              57.14524325209135
+            ],
+            [
+              -2.1028486711855408,
+              57.14511710078975
+            ],
+            [
+              -2.102791309944621,
+              57.14495673630827
+            ],
+            [
+              -2.1027386782104713,
+              57.14496021844619
+            ],
+            [
+              -2.1027990121499442,
+              57.14512109285167
+            ],
+            [
+              -2.102931233336477,
+              57.145256895377145
+            ],
+            [
+              -2.1029824251170908,
+              57.14524325209135
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "47ae391c0e088c441a79bc323a9f337f",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 108.99
+      }
+    },
+    {
+      "id": "eb7bacf064b4f59e691a06c329a53153",
+      "type": "Feature",
+      "properties": {
+        "featureid": "eb7bacf064b4f59e691a06c329a53153",
+        "title": "Merkur Slots",
+        "type": "leisure"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.102931233336477,
+              57.145256895377145
+            ],
+            [
+              -2.102797728449218,
+              57.14512109285167
+            ],
+            [
+              -2.102736110808962,
+              57.14496091487365
+            ],
+            [
+              -2.102682195373319,
+              57.14496648629327
+            ],
+            [
+              -2.1027373945097168,
+              57.14512805709586
+            ],
+            [
+              -2.1028696156962496,
+              57.14527430592102
+            ],
+            [
+              -2.102931233336477,
+              57.145256895377145
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "eb7bacf064b4f59e691a06c329a53153",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 132.94
+      }
+    },
+    {
+      "id": "69e81657f4460cc722cd7b72f728eaa9",
+      "type": "Feature",
+      "properties": {
+        "featureid": "69e81657f4460cc722cd7b72f728eaa9",
+        "title": "Shapla",
+        "type": "food"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1034021050282092,
+              57.14512767048598
+            ],
+            [
+              -2.103375930930099,
+              57.14513391839199
+            ],
+            [
+              -2.103295314708049,
+              57.14504531162575
+            ],
+            [
+              -2.103192712244521,
+              57.14506803132957
+            ],
+            [
+              -2.103150833688062,
+              57.14502429588717
+            ],
+            [
+              -2.10312047173457,
+              57.14492660094558
+            ],
+            [
+              -2.1032046434081337,
+              57.144916682801636
+            ],
+            [
+              -2.1034021050282092,
+              57.14512767048598
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "69e81657f4460cc722cd7b72f728eaa9",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 133.56
+      }
+    },
+    {
+      "id": "d0a1f067333fb49a7d5a20968679ef28",
+      "type": "Feature",
+      "properties": {
+        "featureid": "d0a1f067333fb49a7d5a20968679ef28"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1033760776890915,
+              57.14513412289236
+            ],
+            [
+              -2.1032350596604203,
+              57.1451733278179
+            ],
+            [
+              -2.1031512517922692,
+              57.145078854766496
+            ],
+            [
+              -2.1031944103352203,
+              57.14506796448575
+            ],
+            [
+              -2.1032952808824916,
+              57.14504672842904
+            ],
+            [
+              -2.1033760776890915,
+              57.14513412289236
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "d0a1f067333fb49a7d5a20968679ef28",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 107.48
+      }
+    },
+    {
+      "id": "f982b6e45105952d1270927b8a7094f5",
+      "type": "Feature",
+      "properties": {
+        "featureid": "f982b6e45105952d1270927b8a7094f5"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.1031512517922692,
+              57.145079399280405
+            ],
+            [
+              -2.103043857279374,
+              57.1451077139952
+            ],
+            [
+              -2.103131178051626,
+              57.14520273148503
+            ],
+            [
+              -2.10323556150297,
+              57.1451733278179
+            ],
+            [
+              -2.1031512517922692,
+              57.145079399280405
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "f982b6e45105952d1270927b8a7094f5",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 83.9
+      }
+    },
+    {
+      "id": "1f38864839f61b4fe03f662f8716c611",
+      "type": "Feature",
+      "properties": {
+        "featureid": "1f38864839f61b4fe03f662f8716c611",
+        "title": "Ann Summers",
+        "type": "retail"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -2.103130624307113,
+              57.145203285302074
+            ],
+            [
+              -2.1030438053786895,
+              57.14510799555711
+            ],
+            [
+              -2.1029921154961926,
+              57.14512188064944
+            ],
+            [
+              -2.1029690306939415,
+              57.14509547174359
+            ],
+            [
+              -2.102917977326257,
+              57.1449413644051
+            ],
+            [
+              -2.102791333779493,
+              57.14495587977811
+            ],
+            [
+              -2.1028484125610873,
+              57.14511651619242
+            ],
+            [
+              -2.1029818266457596,
+              57.14524348261091
+            ],
+            [
+              -2.103130624307113,
+              57.145203285302074
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "styledetails": {
+        "id": "1f38864839f61b4fe03f662f8716c611",
+        "styledata": {
+          "fillcolor": "#10CAF0",
+          "fillopacity": 0.4,
+          "fillborderwidth": 2,
+          "fillbordercolor": "#3b1513"
+        }
+      },
+      "measurement": {
+        "squaremeters": 288.57
       }
     }
   ]
