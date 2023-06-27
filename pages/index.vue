@@ -43,10 +43,6 @@
 </template>
 
 <style>
-    path.leaflet-interactive:hover {
-        fill-opacity: 1;
-    }
-
     .nav-btn {
         @apply py-4 w-full text-center hover:bg-gray-100;
     }
@@ -136,15 +132,14 @@
                   layer.feature.properties.title = feature.properties.title;
                   layer.feature.properties.type = feature.properties.type;
 
-                  // layer.on('click', function(e) {
-                  //     console.log(e.target);
-                  // });
-
                   //Set the style of the polygon
                   if( html != "<div></div>" ) {
                       layer.bindTooltip(
                             html,
-                          { permanent: false,sticky: true }
+                          { permanent: false,
+                            sticky: true ,
+                            opacity: 1
+                          }
                       );
                   }
 
@@ -153,6 +148,14 @@
                       fillOpacity: opacity,
                       opacity: opacity,
                       color: "#222222"
+                  });
+
+                  layer.on('mousemove', function (event) {
+                      layer.setStyle({ fillOpacity: 1 })
+                  });
+
+                  layer.on('mouseout', function (event) {
+                      layer.setStyle({ fillOpacity: 0.65 })
                   });
               };
           }
@@ -201,21 +204,47 @@
 
               map.eachLayer(function (layer) {
                   let opacity = 0;
+                  let hoverOpacity = 0;
+                  let tooltipOpacity = 0;
 
                   if( layer.feature != null ) {
                       if( layer.feature.properties.type == null && filter == 'empty' ) {
                           opacity = 0.65;
+                          hoverOpacity = 1;
+                          tooltipOpacity = 1;
                       }
                       else if( filter == '' ) {
                           opacity = 0.65;
+                          hoverOpacity = 1;
+                          tooltipOpacity = 1;
                       }
                       else if( layer.feature.properties.type != null && layer.feature.properties.type == filter ) {
                           opacity = 0.65;
+                          hoverOpacity = 1;
+                          tooltipOpacity = 1;
                       }
 
                       layer.setStyle({
                           fillOpacity: opacity,
                           opacity: opacity
+                      });
+
+                      if (layer.getTooltip()) {
+                          const tooltip = layer.getTooltip();
+                          if (tooltip._content != null) {
+                              layer.unbindTooltip().bindTooltip(tooltip, {
+                                  permanent: false,
+                                  opacity: tooltipOpacity
+                              })
+                          }
+                      }
+
+                      layer.on('mousemove', function (event) {
+                          layer.setStyle({ fillOpacity: hoverOpacity })
+                      });
+
+                      layer.on('mouseout', function (event) {
+                          layer.setStyle({ fillOpacity: opacity })
                       });
                   }
               });
