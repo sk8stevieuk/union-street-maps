@@ -49,8 +49,11 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/axios',
   ],
-
+  axios: {
+    // proxy: true
+  },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     'nuxt-leaflet',

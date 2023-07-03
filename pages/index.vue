@@ -1,10 +1,24 @@
 <template>
-    <div>
+    <div class="relative overflow-hidden">
         <nav id="map-nav" class="flex justify-evenly">
             <div tabindex="0" role="button" aria-pressed="false" @click="menuClick($event)" class="nav-btn border-r">West</div>
             <div tabindex="0" role="button" aria-pressed="false" @click="menuClick($event)" class="nav-btn border-r">Central</div>
             <div tabindex="0" role="button" aria-pressed="false" @click="menuClick($event)" class="nav-btn">East</div>
         </nav>
+        <div class="item-details shadow-xl h-full w-full sm:w-1/2 lg:w-1/4 right-0 absolute bg-white p-6 transition-all duration-500 closed" style="z-index:1001;">
+            <button class="float-right hover:scale-125" @click="closeDetails($event)">
+                <span class="sr-only">Close</span>
+                &#10006;
+            </button>
+            <h2 class="text-lg font-bold mb-6">Shop Details</h2>
+            <img v-if="clickedShop && clickedShop.image != null" class="mb-2" :src="clickedShop.image">
+            <h3 v-if="clickedShop != null" class="font-bold">{{ clickedShop.title }}</h3>
+            <p v-if="clickedShop != null && clickedShop.id">
+                {{ clickedShop.id }}
+                <span v-if="clickedShop != null && clickedShop.idEnd != null"> - {{ clickedShop.idEnd }}</span>
+                Union Street, Aberdeen
+            </p>
+        </div>
         <div id="map-wrap" style="height: 100vh">
              <client-only>
                  <l-map ref="map" :zoom=zoom :minZoom="16" :maxBounds="[[57.14846225825293, -2.117965603492106], [57.14130992049215, -2.092060045100244]]" :center="center">
@@ -44,7 +58,11 @@
 
 <style>
     .nav-btn {
-        @apply py-4 w-full text-center hover:bg-gray-100;
+        @apply py-4 w-full font-bold text-center text-white bg-purple-900 hover:bg-orange-500 hover:text-black;
+    }
+    .closed {
+        width: 0;
+        right: -100%;
     }
 </style>
 
@@ -65,7 +83,8 @@
           officeColor: "#4ade81",
           hotelColor: "#06b6d4",
           mixedColor: "#d946ef",
-          typeFilter: null
+          typeFilter: null,
+          clickedShop: null
       }),
       computed: {
           options() {
@@ -92,6 +111,7 @@
               return (feature, layer) => {
                   let fillColor = "#9ca3af";
                   let opacity = 0.5;
+                  let clickedShop = null;
 
                   if( feature.properties.type != null ) {
                       //Hide the overlay if there is a filter selected
@@ -157,6 +177,14 @@
                   layer.on('mouseout', function (event) {
                       layer.setStyle({ fillOpacity: 0.65 })
                   });
+
+                  layer.on('click', (event) => {
+                      const detailsTab = document.querySelector('.item-details');
+                      detailsTab.classList.remove('closed');
+
+                      clickedShop = feature.properties;
+                      this.clickedShop = clickedShop;
+                  });
               };
           }
       },
@@ -171,7 +199,10 @@
                   console.error(err.message)
               })
 
-          // console.log(this.$children);
+          const watchPosition = navigator.geolocation.watchPosition((position) => {
+              this.userLat = position.coords.latitude;
+              this.userLong = position.coords.longitude;
+          });
 
       },
       methods:{
@@ -179,6 +210,10 @@
               return new Promise(function(resolve, reject) {
                   navigator.geolocation.getCurrentPosition(resolve, reject, options)
               })
+          },
+          closeDetails($event) {
+              const detailsTab = document.querySelector('.item-details');
+              detailsTab.classList.add('closed');
           },
           menuClick($event) {
               const navType = $event.target.innerText.toLowerCase();
@@ -201,17 +236,21 @@
           toggleFilter($event) {
               const map = this.$refs.map.mapObject;
               let filter = this.typeFilter;
+              let selectedAmount = 0;
 
               map.eachLayer(function (layer) {
                   let opacity = 0;
                   let hoverOpacity = 0;
                   let tooltipOpacity = 0;
+                  let addClick = false;
 
                   if( layer.feature != null ) {
                       if( layer.feature.properties.type == null && filter == 'empty' ) {
                           opacity = 0.65;
                           hoverOpacity = 1;
                           tooltipOpacity = 1;
+
+                          selectedAmount = selectedAmount + 1;
                       }
                       else if( filter == '' ) {
                           opacity = 0.65;
@@ -222,6 +261,8 @@
                           opacity = 0.65;
                           hoverOpacity = 1;
                           tooltipOpacity = 1;
+
+                          selectedAmount = selectedAmount + 1;
                       }
 
                       layer.setStyle({
@@ -248,6 +289,8 @@
                       });
                   }
               });
+
+              console.log(selectedAmount);
           }
       }
     }
