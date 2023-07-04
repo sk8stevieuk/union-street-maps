@@ -1,6 +1,6 @@
 <template>
     <div class="relative overflow-hidden">
-        <nav id="map-nav" class="flex justify-evenly">
+        <nav v-if="$nuxt.isOnline" id="map-nav" class="flex justify-evenly">
             <div tabindex="0" role="button" aria-pressed="false" @click="menuClick($event)" class="nav-btn border-r">West</div>
             <div tabindex="0" role="button" aria-pressed="false" @click="menuClick($event)" class="nav-btn border-r">Central</div>
             <div tabindex="0" role="button" aria-pressed="false" @click="menuClick($event)" class="nav-btn">East</div>
@@ -19,27 +19,39 @@
                 Union Street, Aberdeen
             </p>
         </div>
-        <div id="map-wrap" style="height: 100vh">
+        <div class="warning"><p class="text-center bg-red-200 border border-red-700 p-2 text-red-700"><strong>Whoops!</strong> couldn't find what you are looking for</p></div>
+        <div v-if="$nuxt.isOnline" id="map-wrap" style="height: 100vh">
              <client-only>
+                 <!-- <l-map ref="map" :zoom=zoom :minZoom="16" :center="center"> -->
                  <l-map ref="map" :zoom=zoom :minZoom="16" :maxBounds="[[57.14846225825293, -2.117965603492106], [57.14130992049215, -2.092060045100244]]" :center="center">
                    <l-tile-layer url="https://api.mapbox.com/styles/v1/sk8stevieuk/clj8oxlwa001u01pj9tk1bw4a/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic2s4c3RldmlldWsiLCJhIjoiY2o3dThmZGR4NHoxdjJxbnU2cmo0MGptYSJ9.P81_j3KirUWPOQ_X6FQdqg"></l-tile-layer>
                    <l-geo-json :geojson="geojson" :options="options" :options-style="styleFunction"></l-geo-json>
-                   <l-marker v-if="userLat && userLong" :lat-lng="[userLat,userLong]">marker</l-marker>
+                   <l-marker v-if="userLat && userLong" :lat-lng="[userLat,userLong]">
+                       <l-icon
+                         :icon-size="[36,36]"
+                         :icon-anchor="[18,18]"
+                         icon-url="/user-location.svg"
+                       />
+                     marker
+                   </l-marker>
                    <l-control class="example-custom-control">
                       <div class="flex flex-col-reverse sm:flex-row items-end">
-                          <form class="ml-2 sm:ml-0 sm:mr-4">
-                              <select class="p-2" v-model="typeFilter" :value="typeFilter" @change="toggleFilter($event)">
-                                  <option value="null" disabled>Filter By</option>
-                                  <option value="">All</option>
-                                  <option value="retail">Retail</option>
-                                  <option value="leisure">Leisure</option>
-                                  <option value="food">Food/Drink</option>
-                                  <option value="hotel">Hotel</option>
-                                  <option value="office">Office</option>
-                                  <option value="mixed">Mixed Use</option>
-                                  <option value="empty">Empty Units</option>
-                              </select>
-                          </form>
+                           <div class="flex flex-row">
+                               <form class="ml-2 sm:ml-0 sm:mr-4">
+                                  <select class="p-2" v-model="typeFilter" :value="typeFilter" @change="toggleFilter($event)">
+                                      <option value="null" disabled>Filter By</option>
+                                      <option value="">All</option>
+                                      <option value="retail">Retail</option>
+                                      <option value="leisure">Leisure</option>
+                                      <option value="food">Food/Drink</option>
+                                      <option value="hotel">Hotel</option>
+                                      <option value="office">Office</option>
+                                      <option value="mixed">Mixed Use</option>
+                                      <option value="empty">Empty Units</option>
+                                  </select>
+                               </form>
+                               <input type="text" class="p-2 ml-2 sm:ml-0 sm:mr-4" @change="search($event)" name="search" placeholder="search">
+                           </div>
                            <ul id="key" class="text-right bg-white p-2 flex flex-wrap w-3/4 sm:w-full mb-2 sm:mb-0">
                                <li class="mr-3"><span class="mr-1" :style="'background-color:' + retailColor + ';color:' + retailColor + ';'">....</span>Retail</li>
                                <li class="mr-3"><span class="mr-1" :style="'background-color:' + leisureColor + ';color:' + leisureColor + ';'">....</span>Leisure</li>
@@ -53,6 +65,12 @@
                  </l-map>
              </client-only>
           </div>
+          <div v-else class="container mx-auto">
+              <svg-icon name="offline" />
+              <h2 class="text-2xl font-bold">Whoops!</h2>
+              <h3 class="text-lg">You appear to be offline</h3>
+              <p>This site requires an internet connection to work. Please try again later.</p>
+          </div>
     </div>
 </template>
 
@@ -60,9 +78,38 @@
     .nav-btn {
         @apply py-4 w-full font-bold text-center text-white bg-purple-900 hover:bg-orange-500 hover:text-black;
     }
+    .open {
+      max-height: 100px !important;
+      opacity: 1;
+      animation: fadeOut 1s linear;
+      animation-delay: 3s;
+      animation-fill-mode: forwards;
+    }
     .closed {
         width: 0;
         right: -100%;
+    }
+    .leaflet-marker-icon {
+        animation: blinker 1.5s linear infinite;
+    }
+    .warning {
+        max-height: 0;
+    }
+    @keyframes blinker {
+        50% {
+          opacity: 0.5;
+        }
+    }
+
+    @keyframes fadeOut {
+        60% {
+          opacity: 0;
+          height: auto;
+        }
+        100% {
+            opacity: 0;
+            height: 0;
+        }
     }
 </style>
 
@@ -189,6 +236,8 @@
           }
       },
       async mounted() {
+          const connection = navigator.connection;
+
           //Get the users current position
           const position = this.getPosition()
               .then((position) => {
@@ -203,7 +252,6 @@
               this.userLat = position.coords.latitude;
               this.userLong = position.coords.longitude;
           });
-
       },
       methods:{
           getPosition(options) {
@@ -214,6 +262,70 @@
           closeDetails($event) {
               const detailsTab = document.querySelector('.item-details');
               detailsTab.classList.add('closed');
+          },
+          search($event) {
+              const search = $event.target.value;
+              const map = this.$refs.map.mapObject;
+              let found = false;
+
+              this.warning = false;
+
+              map.eachLayer((layer) => {
+                  if( found == false && layer.feature != null && layer.feature.properties.title != null ) {
+                      let title = String(layer.feature.properties.title).toLowerCase();
+                      if(search.toLowerCase() == title) {
+                          found = true;
+
+                          let position = layer._bounds._northEast;
+                          this.zoom = 18;
+                          this.center = position;
+
+                          if (layer.getTooltip()) {
+                              const tooltip = layer.getTooltip();
+                              if (tooltip._content != null) {
+                                  layer.unbindTooltip().bindTooltip(tooltip, {
+                                      permanent: false,
+                                      opacity: 1
+                                  }).openTooltip()
+                              }
+                          }
+                      }
+                  }
+              })
+
+              if( !found ) {
+                  map.eachLayer((layer) => {
+                      if( found == false && layer.feature != null && layer.feature.properties.title != null ) {
+                          let title = String(layer.feature.properties.title).toLowerCase();
+                          if( title.includes(search) ) {
+                              found = true;
+
+                              let position = layer._bounds._northEast;
+                              this.zoom = 18;
+                              this.center = position;
+
+                              if (layer.getTooltip()) {
+                                  const tooltip = layer.getTooltip();
+                                  if (tooltip._content != null) {
+                                      layer.unbindTooltip().bindTooltip(tooltip, {
+                                          permanent: false,
+                                          opacity: 1
+                                      }).openTooltip()
+                                  }
+                              }
+                          }
+                      }
+                  })
+              }
+
+              if( !found ) {
+                  let warningDom = document.querySelector(".warning");
+                  warningDom.classList.add('open');
+
+                  setTimeout(() => {
+                      warningDom.classList.remove('open');
+                  }, "4000");
+              }
           },
           menuClick($event) {
               const navType = $event.target.innerText.toLowerCase();
