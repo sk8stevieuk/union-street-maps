@@ -24,7 +24,7 @@
              <client-only>
                  <!-- <l-map ref="map" :zoom=zoom :minZoom="16" :center="center"> -->
                  <l-map ref="map" :zoom=zoom :minZoom="16" :maxBounds="[[57.14846225825293, -2.117965603492106], [57.14130992049215, -2.092060045100244]]" :center="center">
-                   <l-tile-layer url="https://api.mapbox.com/styles/v1/sk8stevieuk/clj8oxlwa001u01pj9tk1bw4a/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoic2s4c3RldmlldWsiLCJhIjoiY2o3dThmZGR4NHoxdjJxbnU2cmo0MGptYSJ9.P81_j3KirUWPOQ_X6FQdqg"></l-tile-layer>
+                   <l-tile-layer url="https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png"></l-tile-layer>
                    <l-geo-json :geojson="geojson" :options="options" :options-style="styleFunction"></l-geo-json>
                    <l-marker v-if="userLat && userLong" :lat-lng="[userLat,userLong]">
                        <l-icon
