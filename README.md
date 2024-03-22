@@ -67,3 +67,16 @@ More information about the usage of this directory in [the documentation](https:
 This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+
+## Notes
+
+### `Shop unit types`
+
+Class 1 Shops (inc. food off the premises)
+Class 2 Financial, professional and other services
+Class 3 Food and drink (consumption on the premises)
+Class 4 Business
+Class 7 Hotels and hostels
+Class 10 Non-residential institutions
+Class 11 Assembly and leisure
+Sui Generis Public House

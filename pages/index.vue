@@ -1,23 +1,42 @@
 <template>
     <div class="relative overflow-hidden">
+        <Sprite />
+
+        <!-- <defs><pattern id="image.gif" x="0" y="0" patternUnits="userSpaceOnUse" width="24" height="24"><rect width="24" height="24" x="0" fill="#3388ff"></rect><image x="0" y="0" xlink:href="image.gif" width="24" height="24"></image></pattern></defs> -->
+
         <nav v-if="$nuxt.isOnline" id="map-nav" class="flex justify-evenly">
             <div tabindex="0" role="button" aria-pressed="false" @click="menuClick($event)" class="nav-btn border-r">West</div>
             <div tabindex="0" role="button" aria-pressed="false" @click="menuClick($event)" class="nav-btn border-r">Central</div>
             <div tabindex="0" role="button" aria-pressed="false" @click="menuClick($event)" class="nav-btn">East</div>
         </nav>
-        <div class="item-details shadow-xl h-full w-full sm:w-1/2 lg:w-1/4 right-0 absolute bg-white p-6 transition-all duration-500 closed" style="z-index:1001;">
+        <div class="item-details closed">
             <button class="float-right hover:scale-125" @click="closeDetails($event)">
                 <span class="sr-only">Close</span>
                 &#10006;
             </button>
-            <h2 class="text-lg font-bold mb-6">Shop Details</h2>
-            <img v-if="clickedShop && clickedShop.image != null" class="mb-2" :src="clickedShop.image">
-            <h3 v-if="clickedShop != null" class="font-bold">{{ clickedShop.title }}</h3>
-            <p v-if="clickedShop != null && clickedShop.id">
-                {{ clickedShop.id }}
-                <span v-if="clickedShop != null && clickedShop.idEnd != null"> - {{ clickedShop.idEnd }}</span>
-                Union Street, Aberdeen
-            </p>
+            <div class="relative top-4">
+                <h2 class="sr-only">Shop Details</h2>
+                <div class="shop-media relative">
+                    <img v-if="clickedShop && clickedShop.image != null" class="w-full mb-2" :src="clickedShop.image" width="320px" height="240px">
+                    <img v-else-if="clickedShop && clickedShop.cropUrl != null" class="w-full mb-2" :src="clickedShop.cropUrl" width="320px" height="240px">
+                </div>
+                <h3 v-if="clickedShop != null" class="text-2xl font-bold">
+                    {{ clickedShop.title }}
+                    <svg v-if="clickedShop && clickedShop.local" class="fill-red-600 inline-block align-bottom h-8 w-8">
+                        <use href="#heart" />
+                    </svg>
+                </h3>
+                <p v-if="clickedShop != null && clickedShop.location && typeof(clickedShop.location) == 'number'" class="text-gray-400">
+                    {{ clickedShop.location }} Union Street, Aberdeen
+                </p>
+                <p class="prose mt-4" v-if="clickedShop != null && clickedShop.hasOwnProperty('description')">{{ clickedShop.description }}</p>
+                <ul class="tabs-wrapper">
+                    <li v-if="clickedShop != null && clickedShop.hasOwnProperty('tags')" v-for="(tag, tagIndex) in clickedShop.tags">
+                        {{ tag }}
+                    </li>
+                </ul>
+                <a class="bg-purple-600 text-white px-4 py-2 rounded-xl" v-if="clickedShop != null && clickedShop.hasOwnProperty('url')" :href="clickedShop.url" target="_blank" rel="noopener nofollow noreferrer">View Property</a>
+            </div>
         </div>
         <div class="warning"><p class="text-center bg-red-200 border border-red-700 p-2 text-red-700"><strong>Whoops!</strong> couldn't find what you are looking for</p></div>
         <div v-if="$nuxt.isOnline" id="map-wrap" style="height: 100vh">
@@ -78,6 +97,12 @@
     .nav-btn {
         @apply py-4 w-full font-bold text-center text-white bg-purple-900 hover:bg-orange-500 hover:text-black;
     }
+
+    .item-details {
+        @apply shadow-xl h-full w-full sm:w-1/2 right-0 absolute bg-white p-6 transition-all duration-500 overflow-y-scroll;
+        z-index:1001;
+    }
+
     .open {
       max-height: 100px !important;
       opacity: 1;
@@ -86,8 +111,14 @@
       animation-fill-mode: forwards;
     }
     .closed {
-        width: 0;
         right: -100%;
+    }
+    .tabs-wrapper {
+        @apply flex gap-2 mt-4;
+
+        > li {
+            @apply border border-purple-600 text-purple-600 rounded-full text-sm py-1 px-2;
+        }
     }
     .leaflet-marker-icon {
         animation: blinker 1.5s linear infinite;
@@ -95,6 +126,29 @@
     .warning {
         max-height: 0;
     }
+
+    .marker-tooltip {
+        > h3 {
+            @apply text-lg font-bold;
+        }
+
+        > .marker-notice {
+            @apply italic opacity-50;
+        }
+
+        .tooltip-type-wrapper {
+            @apply flex items-center mt-2;
+        }
+
+        .tooltip-icon {
+            @apply mr-1 h-4 w-4;
+        }
+    }
+
+    path:focus {
+        outline: none;
+    }
+
     @keyframes blinker {
         50% {
           opacity: 0.5;
@@ -115,9 +169,17 @@
 
 <script>
     import json from "~/static/json/union-street.json";
+    import shops from "~/static/json/shops.json";
 
     export default {
       name: 'IndexPage',
+      head() {
+        return {
+          script: [
+            { src: '/leaflet-patterns.js' }
+          ]
+        }
+      },
       data: () => ({
           zoom: 16,
           center: [57.14617607961514, -2.0990591687252156],
@@ -131,7 +193,8 @@
           hotelColor: "#06b6d4",
           mixedColor: "#d946ef",
           typeFilter: null,
-          clickedShop: null
+          clickedShop: [],
+          apiBaseUrl: process.env.API_BASE_URL
       }),
       computed: {
           options() {
@@ -142,58 +205,83 @@
           styleFunction() {
               const fillColor = this.fillColor; // important! need touch fillColor in computed for re-calculate when change fillColor
 
-              console.log(fillColor);
-
               return () => {
                 return {
                   weight: 2,
                   color: "#222222",
                   opacity: 0.75,
                   fillColor: 'red',
-                  fillOpacity: 0.5
+                  fillOpacity: 0.5,
                 };
               };
           },
           onEachFeatureFunction() {
               return (feature, layer) => {
                   let fillColor = "#9ca3af";
-                  let opacity = 0.5;
+                  let label = "";
+                  let opacity = 0.7;
                   let clickedShop = null;
+                  let classes = "";
 
+                  // Set the colours based on property type
                   if( feature.properties.type != null ) {
                       //Hide the overlay if there is a filter selected
                       if( this.typeFilter != null && this.typeFilter != feature.properties.type ) {
                           opacity = 0;
                       }
 
+                      //Check the property type
                       switch(feature.properties.type) {
                           case "retail":
                               fillColor = this.retailColor;
+                              label = "Retail";
                               break;
                           case "leisure":
                               fillColor = this.leisureColor;
+                              label = "Leisure";
                               break;
                           case "food":
                               fillColor = this.foodColor;
+                              label = "Food & Drink";
                               break;
                           case "hotel":
                               fillColor = this.hotelColor;
+                              label = "Hotel";
                               break;
                           case "office":
                               fillColor = this.officeColor;
+                              label = "Office";
                               break;
                           case "mixed":
                               fillColor = this.mixedColor;
+                              label = "Mixed Use";
+                              break;
+                          default:
+                              classes = "notinuse";
                               break;
                       }
                   }
 
+                  let fillPattern = fillColor;
+
                   //Create the popup content for each polygon
-                  let html = "<div>";
+                  let html = "<div class='marker-tooltip'>";
                   html += feature.properties.title != null ? "<h3>" + feature.properties.title + "</h3>" : '';
-                  html += feature.properties.id != null ? feature.properties.id : '';
-                  html += feature.properties.idEnd != null ? " - " + feature.properties.idEnd : '';
-                  html += feature.properties.id != null ? ' Union Street' : '';
+
+                  if( typeof(feature.properties.id) == "number" ) {
+                      html += feature.properties.id != null ? feature.properties.id : '';
+                      html += feature.properties.idEnd != null ? " - " + feature.properties.idEnd : '';
+                      html += feature.properties.id != null ? ' Union Street' : '';
+                  }
+
+                  if( layer.feature.properties.type ) {
+                      html += "<div class='tooltip-type-wrapper'><svg class='tooltip-icon' style='fill:" + fillColor + ";'><use href='#" + layer.feature.properties.type + "' /></svg><p style='color:" + fillColor + "'>" + label + "</p></div>";
+                  }
+
+                  if( layer.feature.properties.active == 0 ) {
+                      html += "<p class='marker-notice'>No activity from tenant.</p>";
+                  }
+
                   html += "</div>";
 
                   layer.feature.properties.title = feature.properties.title;
@@ -210,11 +298,19 @@
                       );
                   }
 
+                  //Check feature is active and set class if not
+                  if( layer.feature.properties.active == 0 ) {
+                      classes = "notinuse";
+                      fillPattern = 'url(image.gif)';
+                  }
+
                   layer.setStyle({
                       fillColor: fillColor,
+                      fill: fillPattern,
                       fillOpacity: opacity,
                       opacity: opacity,
-                      color: "#222222"
+                      color: "#222222",
+                      className: classes
                   });
 
                   layer.on('mousemove', function (event) {
@@ -226,11 +322,41 @@
                   });
 
                   layer.on('click', (event) => {
-                      const detailsTab = document.querySelector('.item-details');
-                      detailsTab.classList.remove('closed');
+                      //Call the Our Union Street Craft API if shop is empty
+                      if( feature.properties.type == null && feature.properties.id != null ) {
+                          //Create a url to fetch for shop details
+                          const auth = process.env.API_AUTH_KEY;
+                          let url = this.apiBaseUrl + 'getunit.json?auth=' + auth + '&id=' + feature.properties.id;
 
-                      clickedShop = feature.properties;
-                      this.clickedShop = clickedShop;
+                          //Try and fetch the data
+                          let data = fetch(url,{
+                              method: 'GET',
+                              headers:{
+                                "Content-Type":'application/json'
+                              }
+                          }).then(res => res.json()).then(res => {
+                              if( res.data != null && res.data.length > 0 ) {
+                                  this.clickedShop = res.data[0];
+
+                                  const detailsTab = document.querySelector('.item-details');
+                                  detailsTab.classList.remove('closed');
+                              } else {
+                                  console.log("couldnt find data for this unit");
+                              }
+                          })
+                      }
+
+                      //Get the shop details from the shop.json file
+                      if( feature.properties.id != null ) {
+                          const foundShop = shops.data.find((element) => element.location == feature.properties.id);
+
+                          if( foundShop != null ) {
+                              this.clickedShop = foundShop;
+
+                              const detailsTab = document.querySelector('.item-details');
+                              detailsTab.classList.remove('closed');
+                          }
+                      }
                   });
               };
           }
@@ -401,8 +527,6 @@
                       });
                   }
               });
-
-              console.log(selectedAmount);
           }
       }
     }

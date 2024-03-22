@@ -199,7 +199,7 @@ export async function setContext (app, context) {
       payload: context.payload,
       error: context.error,
       base: app.router.options.base,
-      env: {}
+      env: {"API_AUTH_KEY":"monehdons","API_BASE_URL":"https://our-union-street.hampton.associates/api/"}
     }
     // Only set once
 

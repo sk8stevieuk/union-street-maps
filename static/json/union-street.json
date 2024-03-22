@@ -1671,7 +1671,8 @@
       "properties": {
         "featureid": "6aef4d5258768feb62fa4baccda9784e",
         "type": "mixed",
-        "title": "Aberdeen Indoor Market"
+        "title": "Aberdeen Indoor Market",
+        "id": "indoormarket"
       },
       "geometry": {
         "coordinates": [
@@ -1872,7 +1873,10 @@
       "id": "02a68c50060c62c184d489c35fe6fafd",
       "type": "Feature",
       "properties": {
-        "featureid": "02a68c50060c62c184d489c35fe6fafd"
+        "featureid": "02a68c50060c62c184d489c35fe6fafd",
+        "id": 132,
+        "title": "Tag Heuer",
+        "type": "retail"
       },
       "geometry": {
         "coordinates": [
@@ -2537,7 +2541,8 @@
       "id": 45,
       "type": "Feature",
       "properties": {
-        "featureid": "4944d7c2bd5e7b0bf2d4d280e1a1db0e"
+        "featureid": "4944d7c2bd5e7b0bf2d4d280e1a1db0e",
+        "id": 489
       },
       "geometry": {
         "coordinates": [
@@ -2583,7 +2588,9 @@
       "id": "0f7a8d658e6370dd8b85477a15bac85e",
       "type": "Feature",
       "properties": {
-        "featureid": "0f7a8d658e6370dd8b85477a15bac85e"
+        "featureid": "0f7a8d658e6370dd8b85477a15bac85e",
+        "id": 475,
+        "idEnd": 485
       },
       "geometry": {
         "coordinates": [
@@ -2678,7 +2685,9 @@
       "id": 47,
       "type": "Feature",
       "properties": {
-        "featureid": "87dcec881a822a3b7e42b051320f21ec"
+        "featureid": "87dcec881a822a3b7e42b051320f21ec",
+        "id": 463,
+        "idEnd": 465
       },
       "geometry": {
         "coordinates": [
@@ -2775,7 +2784,9 @@
       "properties": {
         "featureid": "0e43c82211e85b8006ea2c261d31dc1b",
         "title": "The Justice Mill",
-        "type": "food"
+        "type": "food",
+        "id": 423,
+        "idEnd": 425
       },
       "geometry": {
         "coordinates": [
@@ -3673,6 +3684,7 @@
         "featureid": "ff8da6e31bf8221ea4ac6de66e4507f7",
         "type": "leisure",
         "title": "Music Hall",
+        "id": "musichall",
         "image": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Facade_of_the_Music_Hall%2C_Aberdeen_%28geograph_3110454%29.jpg"
       },
       "geometry": {
@@ -5447,9 +5459,9 @@
       "type": "Feature",
       "properties": {
         "featureid": "1153bdbd5f81bc4b637d7cceccd25d07",
-        "title": "Northern Diamond",
-        "type": "retail",
-        "id": 143
+        "title": "German Donor Kebab",
+        "type": "food",
+        "id": 118
       },
       "geometry": {
         "coordinates": [
@@ -5918,7 +5930,10 @@
       "id": "815989292b298312fd50b119f7dfc2bf",
       "type": "Feature",
       "properties": {
-        "featureid": "815989292b298312fd50b119f7dfc2bf"
+        "featureid": "815989292b298312fd50b119f7dfc2bf",
+        "id": 206,
+        "title": "Oodles",
+        "type": "food"
       },
       "geometry": {
         "coordinates": [
@@ -5964,7 +5979,10 @@
       "id": "54495239bb4bbe62ac18b3ab6c5ea5ab",
       "type": "Feature",
       "properties": {
-        "featureid": "54495239bb4bbe62ac18b3ab6c5ea5ab"
+        "featureid": "54495239bb4bbe62ac18b3ab6c5ea5ab",
+        "id": 206,
+        "type": "food",
+        "title": "Heavenly Deserts"
       },
       "geometry": {
         "coordinates": [
@@ -7117,7 +7135,8 @@
       "properties": {
         "featureid": "7fc5bc0a4ba35616c5f56aa332c27a91",
         "title": "Chicks 'n' Wings",
-        "type": "food"
+        "type": "food",
+        "active": 0
       },
       "geometry": {
         "coordinates": [
@@ -7508,7 +7527,8 @@
       "id": "b3dc6efa2a1f2266045d419093d4d95f",
       "type": "Feature",
       "properties": {
-        "featureid": "b3dc6efa2a1f2266045d419093d4d95f"
+        "featureid": "b3dc6efa2a1f2266045d419093d4d95f",
+        "id": 377
       },
       "geometry": {
         "coordinates": [
@@ -8166,8 +8186,8 @@
       "type": "Feature",
       "properties": {
         "featureid": "41cf7036b289d63ebbb999fad8cec43e",
-        "title": "Aberdeen Whisky Shop",
-        "type": "retail",
+        "title": "474 by Cup",
+        "type": "food",
         "id": 474
       },
       "geometry": {
@@ -8214,7 +8234,10 @@
       "id": 153,
       "type": "Feature",
       "properties": {
-        "featureid": "d0143ace48c1e5a9fb0fe60bb112c17a"
+        "featureid": "d0143ace48c1e5a9fb0fe60bb112c17a",
+        "id": 472,
+        "type": "retail",
+        "title": "Aberdeen Whisky Shop"
       },
       "geometry": {
         "coordinates": [
@@ -8519,7 +8542,8 @@
         "featureid": "ae24d3921bfd1bf24b3c0f4dc9070ccc",
         "title": "The Silver Fin",
         "type": "office",
-        "image": "https://www.cbre.co.uk/resources/fileassets/GB-Plus-486298/c16fd724/Silver%20Fin%20Building-153_Photo_1_large.jpg"
+        "id": 445,
+        "idEnd": 455
       },
       "geometry": {
         "coordinates": [
@@ -8583,7 +8607,8 @@
       "properties": {
         "featureid": "951997dbd978f24c676cb1ef11f96a99",
         "title": "Stevensons",
-        "type": "retail"
+        "type": "retail",
+        "id": 429
       },
       "geometry": {
         "coordinates": [
@@ -8631,7 +8656,9 @@
       "properties": {
         "featureid": "d41964a092d89ed75e9d38362a1097ea",
         "title": "The Capitol",
-        "type": "office"
+        "type": "office",
+        "id": 431,
+        "idEnd": 441
       },
       "geometry": {
         "coordinates": [
@@ -10251,6 +10278,7 @@
       "properties": {
         "featureid": "34208fae278e51e5c3d59615b3402c3e",
         "title": "Town House",
+        "id": "townhouse",
         "type": "office"
       },
       "geometry": {
@@ -10371,6 +10399,7 @@
       "properties": {
         "featureid": "08cf40d20bd47e398213456d5ba0cb3d",
         "title": "Tolbooth Museum",
+        "id": "tolbooth",
         "type": "leisure"
       },
       "geometry": {
