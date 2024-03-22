@@ -43,7 +43,7 @@
              <client-only>
                  <!-- <l-map ref="map" :zoom=zoom :minZoom="16" :center="center"> -->
                  <l-map ref="map" :zoom=zoom :minZoom="16" :maxBounds="[[57.14846225825293, -2.117965603492106], [57.14130992049215, -2.092060045100244]]" :center="center">
-                   <l-tile-layer url="https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png"></l-tile-layer>
+                   <l-tile-layer :url="mapLayer"></l-tile-layer>
                    <l-geo-json :geojson="geojson" :options="options" :options-style="styleFunction"></l-geo-json>
                    <l-marker v-if="userLat && userLong" :lat-lng="[userLat,userLong]">
                        <l-icon
@@ -194,7 +194,8 @@
           mixedColor: "#d946ef",
           typeFilter: null,
           clickedShop: [],
-          apiBaseUrl: process.env.API_BASE_URL
+          apiBaseUrl: process.env.API_BASE_URL,
+          mapLayer: process.env.MAP_LAYER
       }),
       computed: {
           options() {
@@ -396,10 +397,17 @@
 
               this.warning = false;
 
+              String.prototype.fuzzy = function (s) {
+                  var hay = this.toLowerCase(), i = 0, n = -1, l;
+                  s = s.toLowerCase();
+                  for (; l = s[i++] ;) if (!~(n = hay.indexOf(l, n + 1))) return false;
+                  return true;
+              };
+
               map.eachLayer((layer) => {
                   if( found == false && layer.feature != null && layer.feature.properties.title != null ) {
                       let title = String(layer.feature.properties.title).toLowerCase();
-                      if(search.toLowerCase() == title) {
+                      if(title.fuzzy(search.toLowerCase())) {
                           found = true;
 
                           let position = layer._bounds._northEast;
@@ -415,33 +423,48 @@
                                   }).openTooltip()
                               }
                           }
-                      }
-                  }
-              })
 
-              if( !found ) {
-                  map.eachLayer((layer) => {
-                      if( found == false && layer.feature != null && layer.feature.properties.title != null ) {
-                          let title = String(layer.feature.properties.title).toLowerCase();
-                          if( title.includes(search) ) {
-                              found = true;
+                          //open the sidebar for content
+                          if( layer.feature.properties.id != null ) {
+                              console.log('searching...');
+                              const foundShop = shops.data.find((element) => element.location == layer.feature.properties.id);
 
-                              let position = layer._bounds._northEast;
-                              this.zoom = 18;
-                              this.center = position;
+                              if( foundShop != null ) {
+                                  console.log("found in shops.json file");
+                                  this.clickedShop = foundShop;
 
-                              if (layer.getTooltip()) {
-                                  const tooltip = layer.getTooltip();
-                                  if (tooltip._content != null) {
-                                      layer.unbindTooltip().bindTooltip(tooltip, {
-                                          permanent: false,
-                                          opacity: 1
-                                      }).openTooltip()
-                                  }
+                                  const detailsTab = document.querySelector('.item-details');
+                                  detailsTab.classList.remove('closed');
                               }
                           }
                       }
-                  })
+                  }
+                  return;
+              })
+
+              if( !found ) {
+                  // map.eachLayer((layer) => {
+                  //     if( found == false && layer.feature != null && layer.feature.properties.title != null ) {
+                  //         let title = String(layer.feature.properties.title).toLowerCase();
+                  //         if( title.includes(search) ) {
+                  //             found = true;
+                  //
+                  //             let position = layer._bounds._northEast;
+                  //             this.zoom = 18;
+                  //             this.center = position;
+                  //
+                  //             if (layer.getTooltip()) {
+                  //                 const tooltip = layer.getTooltip();
+                  //                 if (tooltip._content != null) {
+                  //                     layer.unbindTooltip().bindTooltip(tooltip, {
+                  //                         permanent: false,
+                  //                         opacity: 1
+                  //                     }).openTooltip()
+                  //                 }
+                  //             }
+                  //         }
+                  //     }
+                  // })
               }
 
               if( !found ) {
