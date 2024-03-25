@@ -1,6 +1,16 @@
 {
   "data": [
       {
+          "id": 7,
+          "active": 1,
+          "title": "Primark",
+          "description": "",
+          "image": "https://threebestrated.co.uk/images/PrimarkAberdeen-Aberdeen-UK.jpeg",
+          "location": 153,
+          "local": 0,
+          "tags": ["Fast Fashion", "Clothing"]
+      },
+      {
           "id": 6,
           "active": 1,
           "title": "Aberdeen Indoor Market",

@@ -16,7 +16,7 @@
             <div class="relative top-4">
                 <h2 class="sr-only">Shop Details</h2>
                 <div class="shop-media relative">
-                    <img v-if="clickedShop && clickedShop.image != null" class="w-full mb-2" :src="clickedShop.image" width="320px" height="240px">
+                    <img v-if="clickedShop && clickedShop.image != null" class="mb-2" :src="clickedShop.image" width="320px" height="240px">
                     <img v-else-if="clickedShop && clickedShop.cropUrl != null" class="w-full mb-2" :src="clickedShop.cropUrl" width="320px" height="240px">
                 </div>
                 <h3 v-if="clickedShop != null" class="text-2xl font-bold">
@@ -146,6 +146,10 @@
         .tooltip-icon {
             @apply mr-1 h-4 w-4;
         }
+    }
+
+    .shop-media {
+        @apply flex justify-center;
     }
 
     path:focus {
@@ -360,6 +364,7 @@
                           const foundShop = shops.data.find((element) => element.location == feature.properties.id);
 
                           if( foundShop != null ) {
+                              this.scoreShop(foundShop, feature.properties);
                               this.clickedShop = foundShop;
 
                               const detailsTab = document.querySelector('.item-details');
@@ -398,6 +403,42 @@
               const detailsTab = document.querySelector('.item-details');
               detailsTab.classList.add('closed');
           },
+          scoreShop(shop, building = null) {
+              let negativeTags = ['betting', 'gambling', 'fast food', 'fast fashion'];
+              let positiveTags = ['museum', 'jewellery', 'watches'];
+              let score = 0;
+
+              //Add to score for being local company
+              if( shop.local != null && shop.local ) {
+                  score = score + 1;
+              }
+
+              //Remove a point for office on ground floor
+              if( building != null && building.hasOwnProperty('type') && building.type == "office" ) {
+                  score = score - 1;
+              }
+
+              if( shop.tags != null ) {
+                  const tags = shop.tags;
+                  let foundNegative = false;
+                  let foundPositive = false;
+
+                  tags.forEach((tag) => {
+                      if( negativeTags.indexOf(tag.toLowerCase()) != -1 && foundNegative == false ) {
+                          score = score - 1;
+                          foundNegative = true;
+                      }
+
+                      if( positiveTags.indexOf(tag.toLowerCase()) != -1 && foundPositive == false ) {
+                          score = score + 1;
+                          foundPositive = true;
+                      }
+                  });
+              }
+
+              console.log(score);
+              return score;
+          },
           search($event) {
               const search = $event.target.value;
               const map = this.$refs.map.mapObject;
@@ -414,6 +455,9 @@
                   for (; l = s[i++] ;) if (!~(n = hay.indexOf(l, n + 1))) return false;
                   return true;
               };
+
+              //Hide the keyboard if using mobile
+              $event.target.blur();
 
               map.eachLayer((layer) => {
                   if( found == false && layer.feature != null && layer.feature.properties.title != null ) {
