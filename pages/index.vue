@@ -3,11 +3,11 @@
         <Sprite />
         <Loading v-if="loading" />
 
-        <nav v-if="$nuxt.isOnline" id="map-nav" class="flex justify-evenly">
+        <!-- <nav v-if="$nuxt.isOnline" id="map-nav" class="flex justify-evenly">
             <div tabindex="0" role="button" aria-pressed="false" @click="menuClick($event)" class="nav-btn border-r">West</div>
             <div tabindex="0" role="button" aria-pressed="false" @click="menuClick($event)" class="nav-btn border-r">Central</div>
             <div tabindex="0" role="button" aria-pressed="false" @click="menuClick($event)" class="nav-btn">East</div>
-        </nav>
+        </nav> -->
         <div class="item-details closed">
             <button class="float-right hover:scale-125" @click="closeDetails($event)">
                 <span class="sr-only">Close</span>
@@ -98,8 +98,9 @@
     }
 
     .item-details {
-        @apply shadow-xl h-full w-full sm:w-1/2 right-0 absolute bg-white p-6 transition-all duration-500 overflow-y-scroll;
+        @apply shadow-xl h-full w-full sm:w-1/2 right-0 absolute bg-white p-6 pb-12 transition-all duration-500 overflow-y-scroll;
         z-index:1001;
+        max-height: 100vh;
     }
 
     .open {

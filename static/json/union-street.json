@@ -3463,7 +3463,8 @@
       "type": "Feature",
       "properties": {
         "featureid": "115e847c9b98bf060a7646efd5d33771",
-        "id": 172
+        "id": 170,
+        "idEnd": 172
       },
       "geometry": {
         "coordinates": [
@@ -4810,7 +4811,8 @@
       "type": "Feature",
       "properties": {
         "featureid": "2c6242e535a3c1a2c226e0de17317244",
-        "id": 123.5
+        "id": 125,
+        "idAddOn": ".5"
       },
       "geometry": {
         "coordinates": [

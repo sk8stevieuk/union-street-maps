@@ -1,3 +1,5 @@
+import tailwindTypography from '@tailwindcss/typography';
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -40,6 +42,11 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
   ],
+  tailwindcss: {
+      config: {
+          plugins: [tailwindTypography],
+      }
+  },
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
