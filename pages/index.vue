@@ -1,8 +1,7 @@
 <template>
     <div class="relative overflow-hidden">
         <Sprite />
-
-        <!-- <defs><pattern id="image.gif" x="0" y="0" patternUnits="userSpaceOnUse" width="24" height="24"><rect width="24" height="24" x="0" fill="#3388ff"></rect><image x="0" y="0" xlink:href="image.gif" width="24" height="24"></image></pattern></defs> -->
+        <Loading v-if="loading" />
 
         <nav v-if="$nuxt.isOnline" id="map-nav" class="flex justify-evenly">
             <div tabindex="0" role="button" aria-pressed="false" @click="menuClick($event)" class="nav-btn border-r">West</div>
@@ -29,7 +28,7 @@
                 <p v-if="clickedShop != null && clickedShop.location && typeof(clickedShop.location) == 'number'" class="text-gray-400">
                     {{ clickedShop.location }} Union Street, Aberdeen
                 </p>
-                <p class="prose mt-4" v-if="clickedShop != null && clickedShop.hasOwnProperty('description')">{{ clickedShop.description }}</p>
+                <div class="prose mt-4" v-if="clickedShop != null && clickedShop.hasOwnProperty('description')" v-html="clickedShop.description"></div>
                 <ul class="tabs-wrapper">
                     <li v-if="clickedShop != null && clickedShop.hasOwnProperty('tags')" v-for="(tag, tagIndex) in clickedShop.tags">
                         {{ tag }}
@@ -38,7 +37,7 @@
                 <a class="bg-purple-600 text-white px-4 py-2 rounded-xl" v-if="clickedShop != null && clickedShop.hasOwnProperty('url')" :href="clickedShop.url" target="_blank" rel="noopener nofollow noreferrer">View Property</a>
             </div>
         </div>
-        <div class="warning"><p class="text-center bg-red-200 border border-red-700 p-2 text-red-700"><strong>Whoops!</strong> couldn't find what you are looking for</p></div>
+        <div class="warning"><p><strong>Whoops!</strong> couldn't find what you are looking for</p></div>
         <div v-if="$nuxt.isOnline" id="map-wrap" style="height: 100vh">
              <client-only>
                  <!-- <l-map ref="map" :zoom=zoom :minZoom="16" :center="center"> -->
@@ -104,8 +103,7 @@
     }
 
     .open {
-      max-height: 100px !important;
-      opacity: 1;
+      opacity: 1 !important;
       animation: fadeOut 1s linear;
       animation-delay: 3s;
       animation-fill-mode: forwards;
@@ -124,7 +122,12 @@
         animation: blinker 1.5s linear infinite;
     }
     .warning {
-        max-height: 0;
+        @apply fixed bottom-0 right-0 mx-6 mb-6 opacity-0;
+        z-index: 1001;
+
+        > * {
+            @apply text-center bg-red-200 border border-red-700 p-4 text-red-700;
+        }
     }
 
     .marker-tooltip {
@@ -133,7 +136,7 @@
         }
 
         > .marker-notice {
-            @apply italic opacity-50;
+            @apply italic opacity-50 mt-2;
         }
 
         .tooltip-type-wrapper {
@@ -156,13 +159,14 @@
     }
 
     @keyframes fadeOut {
+        0% {
+          opacity: 1;
+        }
         60% {
           opacity: 0;
-          height: auto;
         }
         100% {
             opacity: 0;
-            height: 0;
         }
     }
 </style>
@@ -181,6 +185,7 @@
         }
       },
       data: () => ({
+          loading: false,
           zoom: 16,
           center: [57.14617607961514, -2.0990591687252156],
           geojson: json,
@@ -330,6 +335,7 @@
                           let url = this.apiBaseUrl + 'getunit.json?auth=' + auth + '&id=' + feature.properties.id;
 
                           //Try and fetch the data
+                          this.loading = true;
                           let data = fetch(url,{
                               method: 'GET',
                               headers:{
@@ -342,8 +348,10 @@
                                   const detailsTab = document.querySelector('.item-details');
                                   detailsTab.classList.remove('closed');
                               } else {
-                                  console.log("couldnt find data for this unit");
+                                  alert("couldnt find data for this unit");
                               }
+
+                              this.loading = false;
                           })
                       }
 
@@ -393,7 +401,10 @@
           search($event) {
               const search = $event.target.value;
               const map = this.$refs.map.mapObject;
+              const regex = new RegExp('^[0-9]+$');
               let found = false;
+
+              let isNumber = regex.test(search);
 
               this.warning = false;
 
@@ -407,12 +418,21 @@
               map.eachLayer((layer) => {
                   if( found == false && layer.feature != null && layer.feature.properties.title != null ) {
                       let title = String(layer.feature.properties.title).toLowerCase();
-                      if(title.fuzzy(search.toLowerCase())) {
-                          found = true;
 
+                      if( title.fuzzy(search.toLowerCase()) && isNumber == false ) {
+                          //Check fuzzy logic function for matching title
+                          found = true;
+                      } else if( isNumber && layer.feature.properties.id == search ) {
+                          //Search for the street number
+                          found = true;
+                      }
+
+                      if( found ) {
                           let position = layer._bounds._northEast;
                           this.zoom = 18;
                           this.center = position;
+
+                          map.panTo(position, this.zoom);
 
                           if (layer.getTooltip()) {
                               const tooltip = layer.getTooltip();

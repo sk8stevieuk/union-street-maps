@@ -1,3 +1,4 @@
+export { default as Loading } from '../../components/Loading.vue'
 export { default as Sprite } from '../../components/Sprite.vue'
 
 // nuxt/nuxt.js#8607

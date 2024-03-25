@@ -126,7 +126,8 @@
       "id": "bf64f7427651e99de81d49ebbc6a7021",
       "type": "Feature",
       "properties": {
-        "featureid": "bf64f7427651e99de81d49ebbc6a7021"
+        "featureid": "bf64f7427651e99de81d49ebbc6a7021",
+        "id": 381
       },
       "geometry": {
         "coordinates": [
@@ -504,7 +505,8 @@
       "properties": {
         "featureid": "a664c58ca61ebe88aeb50f44f048ad78",
         "title": "Visit Scotland",
-        "type": "retail"
+        "type": "retail",
+        "id": 23
       },
       "geometry": {
         "coordinates": [
@@ -556,7 +558,8 @@
       "properties": {
         "featureid": "1763e18b33b5dd081fc8c7fc9a3691c3",
         "title": "Redline Discount World",
-        "type": "retail"
+        "type": "retail",
+        "id": 25
       },
       "geometry": {
         "coordinates": [
@@ -608,7 +611,8 @@
       "properties": {
         "featureid": "123fc15b3a00d7e7aae8352ef402a006",
         "title": "Smart Phone Labs",
-        "type": "retail"
+        "type": "retail",
+        "id": 27
       },
       "geometry": {
         "coordinates": [
@@ -660,7 +664,8 @@
       "properties": {
         "featureid": "ce9c7d08336fda7b0ac6b396740e363e",
         "title": "British Heart Foundation",
-        "type": "retail"
+        "type": "retail",
+        "id": 31
       },
       "geometry": {
         "coordinates": [
@@ -708,7 +713,8 @@
       "properties": {
         "featureid": "ae412729da04be1c3439814f71260fb3",
         "title": "Phone Fix",
-        "type": "retail"
+        "type": "retail",
+        "id": 33
       },
       "geometry": {
         "coordinates": [
@@ -805,7 +811,8 @@
       "properties": {
         "featureid": "965637cc4ed123f294be8a97ef3b96f8",
         "title": "Annie Mo's",
-        "type": "retail"
+        "type": "retail",
+        "id": 39
       },
       "geometry": {
         "coordinates": [
@@ -958,7 +965,8 @@
       "properties": {
         "featureid": "ee64a95e5c1c0dbd9aa2bb88c4082090",
         "title": "Sk:n",
-        "type": "leisure"
+        "type": "leisure",
+        "id": 261
       },
       "geometry": {
         "coordinates": [
@@ -1102,7 +1110,8 @@
       "id": "d1d36ffbc983ebaf60af7e117796062c",
       "type": "Feature",
       "properties": {
-        "featureid": "d1d36ffbc983ebaf60af7e117796062c"
+        "featureid": "d1d36ffbc983ebaf60af7e117796062c",
+        "id": 47
       },
       "geometry": {
         "coordinates": [
@@ -1150,7 +1159,8 @@
       "properties": {
         "featureid": "a56276251f5e8bf744f4a39c2e4709a5",
         "title": "Prime Vapour",
-        "type": "retail"
+        "type": "retail",
+        "id": 49
       },
       "geometry": {
         "coordinates": [
@@ -1197,8 +1207,6 @@
       "type": "Feature",
       "properties": {
         "featureid": "563a0d9268fe4464ff08a59c56aad332",
-        "title": "Halifax",
-        "type": "retail",
         "id": 52,
         "idEnd": 54
       },
@@ -1314,7 +1322,8 @@
       "properties": {
         "featureid": "427f335d1bcfab7b6d963f2bd1037fad",
         "title": "Virgin Money",
-        "type": "retail"
+        "type": "retail",
+        "id": 62
       },
       "geometry": {
         "coordinates": [
@@ -1476,8 +1485,6 @@
       "type": "Feature",
       "properties": {
         "featureid": "a1bf15d0b10fb9ba2c3b20a63f407cf5",
-        "title": "Lush",
-        "type": "retail",
         "id": 81
       },
       "geometry": {
@@ -1524,7 +1531,9 @@
       "id": 25,
       "type": "Feature",
       "properties": {
-        "featureid": "4f0813f3436ce19bf24bdba9a358a09c"
+        "featureid": "4f0813f3436ce19bf24bdba9a358a09c",
+        "id": 73,
+        "idEnd": 77
       },
       "geometry": {
         "coordinates": [
@@ -1972,6 +1981,7 @@
       "type": "Feature",
       "properties": {
         "featureid": "90ab386f6f0d6d1b3e895621bd615906",
+        "id": 92,
         "title": "",
         "type": ""
       },
@@ -2019,7 +2029,8 @@
       "id": "a4b534b788884150153add526e8a6c7d",
       "type": "Feature",
       "properties": {
-        "featureid": "a4b534b788884150153add526e8a6c7d"
+        "featureid": "a4b534b788884150153add526e8a6c7d",
+        "id": 98
       },
       "geometry": {
         "coordinates": [
@@ -2144,7 +2155,8 @@
       "properties": {
         "featureid": "4300a1b879d071a5cb519e80b899b946",
         "title": "Moka",
-        "type": "food"
+        "type": "food",
+        "id": 150
       },
       "geometry": {
         "coordinates": [
@@ -2190,7 +2202,10 @@
       "id": "fa839e5539266e1b696ad4b1f6d232f1",
       "type": "Feature",
       "properties": {
-        "featureid": "fa839e5539266e1b696ad4b1f6d232f1"
+        "featureid": "fa839e5539266e1b696ad4b1f6d232f1",
+        "id": 148,
+        "title": "The Cleavin Barber Club",
+        "type": "leisure"
       },
       "geometry": {
         "coordinates": [
@@ -2254,7 +2269,8 @@
       "properties": {
         "featureid": "dd6fab64b73301da71d8b7e30ace4374",
         "title": "Charles Michies Pharmacy",
-        "type": "retail"
+        "type": "retail",
+        "id": 391
       },
       "geometry": {
         "coordinates": [
@@ -2300,7 +2316,9 @@
       "id": 37,
       "type": "Feature",
       "properties": {
-        "featureid": "cde3d2a99c8e965f953c45eec6203afb"
+        "featureid": "cde3d2a99c8e965f953c45eec6203afb",
+        "id": 357,
+        "idEnd": 363
       },
       "geometry": {
         "coordinates": [
@@ -2395,7 +2413,9 @@
       "id": 39,
       "type": "Feature",
       "properties": {
-        "featureid": "e496df2b1d673ad8c94360450956d069"
+        "featureid": "e496df2b1d673ad8c94360450956d069",
+        "id": 335,
+        "idEnd": 337
       },
       "geometry": {
         "coordinates": [
@@ -2443,6 +2463,7 @@
       "properties": {
         "featureid": "d4f050936ff24968a2efdd9fe4539ef6",
         "title": "Essence",
+        "active": 0,
         "type": "food",
         "id": 401,
         "idEnd": 405
@@ -2832,7 +2853,8 @@
       "id": 50,
       "type": "Feature",
       "properties": {
-        "featureid": "ac70d3d8d348f6990a77b95750dc3b64"
+        "featureid": "ac70d3d8d348f6990a77b95750dc3b64",
+        "id": 419
       },
       "geometry": {
         "coordinates": [
@@ -2878,7 +2900,9 @@
       "id": 49,
       "type": "Feature",
       "properties": {
-        "featureid": "e21c016359b20e910209e398689ecc39"
+        "featureid": "e21c016359b20e910209e398689ecc39",
+        "id": 413,
+        "idEnd": 415
       },
       "geometry": {
         "coordinates": [
@@ -2997,7 +3021,8 @@
       "id": "b3d4ae00f9d9dea5a8d9a5d410bec6db",
       "type": "Feature",
       "properties": {
-        "featureid": "b3d4ae00f9d9dea5a8d9a5d410bec6db"
+        "featureid": "b3d4ae00f9d9dea5a8d9a5d410bec6db",
+        "id": 201
       },
       "geometry": {
         "coordinates": [
@@ -3098,10 +3123,7 @@
       "type": "Feature",
       "properties": {
         "featureid": "7110a309c629e8e0aedeb92ace75c75c",
-        "title": "Post Office",
-        "type": "retail",
-        "id": 408,
-        "idEnd": 412
+        "id": 408
       },
       "geometry": {
         "coordinates": [
@@ -3148,10 +3170,7 @@
       "type": "Feature",
       "properties": {
         "featureid": "fb627fa5514e4235717553c77ce7e4bc",
-        "title": "WH Smith",
-        "type": "retail",
-        "id": 408,
-        "idEnd": 412
+        "id": 412
       },
       "geometry": {
         "coordinates": [
@@ -3221,7 +3240,8 @@
       "id": 61,
       "type": "Feature",
       "properties": {
-        "featureid": "fcd5652a1a866843563084b9efcf5139"
+        "featureid": "fcd5652a1a866843563084b9efcf5139",
+        "id": 414
       },
       "geometry": {
         "coordinates": [
@@ -3355,7 +3375,8 @@
       "properties": {
         "featureid": "4605825c8db994eaf3811d32b03594b5",
         "title": "Gilcomston Church",
-        "type": "leisure"
+        "type": "leisure",
+        "id": "gilcomstonchurch"
       },
       "geometry": {
         "coordinates": [
@@ -3441,7 +3462,8 @@
       "id": "115e847c9b98bf060a7646efd5d33771",
       "type": "Feature",
       "properties": {
-        "featureid": "115e847c9b98bf060a7646efd5d33771"
+        "featureid": "115e847c9b98bf060a7646efd5d33771",
+        "id": 172
       },
       "geometry": {
         "coordinates": [
@@ -3537,7 +3559,8 @@
       "id": 66,
       "type": "Feature",
       "properties": {
-        "featureid": "b6d7ba5a095b94e9018c922574b28366"
+        "featureid": "b6d7ba5a095b94e9018c922574b28366",
+        "id": 156
       },
       "geometry": {
         "coordinates": [
@@ -3833,8 +3856,9 @@
       "type": "Feature",
       "properties": {
         "featureid": "fc3bcff145bfe336cdb14e7e6e7332f8",
-        "title": "outfits",
-        "type": "retail"
+        "title": "Outfits",
+        "type": "retail",
+        "id": 44
       },
       "geometry": {
         "coordinates": [
@@ -3890,7 +3914,8 @@
       "properties": {
         "featureid": "7dcee6ce388b733946f04960e3fa2d2c",
         "title": "Optical Express",
-        "type": "retail"
+        "type": "retail",
+        "id": 40
       },
       "geometry": {
         "coordinates": [
@@ -3938,7 +3963,8 @@
       "properties": {
         "featureid": "495b1cd79c37093e01dbf5adc9720f30",
         "title": "Ladbrokes",
-        "type": "retail"
+        "type": "retail",
+        "id": 50
       },
       "geometry": {
         "coordinates": [
@@ -3986,7 +4012,8 @@
       "properties": {
         "featureid": "7f7d10c4f691a215a21b5c979d6f7bf0",
         "title": "William Hill",
-        "type": "retail"
+        "type": "retail",
+        "id": 48
       },
       "geometry": {
         "coordinates": [
@@ -4034,7 +4061,8 @@
       "properties": {
         "featureid": "acf4fec9a0eb1cd181dbc6c6837b132d",
         "title": "CEX",
-        "type": "retail"
+        "type": "retail",
+        "id": 46
       },
       "geometry": {
         "coordinates": [
@@ -4178,7 +4206,8 @@
       "id": "7a9d9aae231fb2f1d41abe8b4533f303",
       "type": "Feature",
       "properties": {
-        "featureid": "7a9d9aae231fb2f1d41abe8b4533f303"
+        "featureid": "7a9d9aae231fb2f1d41abe8b4533f303",
+        "id": 59
       },
       "geometry": {
         "coordinates": [
@@ -4322,7 +4351,8 @@
       "id": 87,
       "type": "Feature",
       "properties": {
-        "featureid": "a8da5a333e4ea13baa03a446350e40f6"
+        "featureid": "a8da5a333e4ea13baa03a446350e40f6",
+        "id": 105
       },
       "geometry": {
         "coordinates": [
@@ -4683,7 +4713,8 @@
       "id": 84,
       "type": "Feature",
       "properties": {
-        "featureid": "86684d96c840cf786375a6f1e03e02d2"
+        "featureid": "86684d96c840cf786375a6f1e03e02d2",
+        "id": 121
       },
       "geometry": {
         "coordinates": [
@@ -4778,7 +4809,8 @@
       "id": 86,
       "type": "Feature",
       "properties": {
-        "featureid": "2c6242e535a3c1a2c226e0de17317244"
+        "featureid": "2c6242e535a3c1a2c226e0de17317244",
+        "id": 123.5
       },
       "geometry": {
         "coordinates": [
@@ -4826,7 +4858,8 @@
       "properties": {
         "featureid": "48c55fe65dcc5cca2b8861a3f6925c87",
         "title": "Cancer Research",
-        "type": "retail"
+        "type": "retail",
+        "id": 125
       },
       "geometry": {
         "coordinates": [
@@ -4921,7 +4954,8 @@
       "id": 89,
       "type": "Feature",
       "properties": {
-        "featureid": "07e555e64e5f9e1c68f0b6fc7936edd1"
+        "featureid": "07e555e64e5f9e1c68f0b6fc7936edd1",
+        "id": 127
       },
       "geometry": {
         "coordinates": [
@@ -5236,7 +5270,8 @@
       "properties": {
         "featureid": "c9f9a0a4fc08460e294e1d0afd901f8d",
         "title": "HMV",
-        "type": "retail"
+        "type": "retail",
+        "id": 113
       },
       "geometry": {
         "coordinates": [
@@ -5507,7 +5542,8 @@
       "id": "ccfb470d2c49ce8389498b990d6e8735",
       "type": "Feature",
       "properties": {
-        "featureid": "ccfb470d2c49ce8389498b990d6e8735"
+        "featureid": "ccfb470d2c49ce8389498b990d6e8735",
+        "id": 128
       },
       "geometry": {
         "coordinates": [
@@ -5553,7 +5589,8 @@
       "id": "64ce2023413df3105d88a79816b27409",
       "type": "Feature",
       "properties": {
-        "featureid": "64ce2023413df3105d88a79816b27409"
+        "featureid": "64ce2023413df3105d88a79816b27409",
+        "id": 126
       },
       "geometry": {
         "coordinates": [
@@ -5601,7 +5638,9 @@
       "properties": {
         "featureid": "c1a1e089e7d929dd1f934451236c5ea2",
         "title": "Adam's Watch Specialist",
-        "type": "retail"
+        "type": "retail",
+        "id": 122,
+        "idAddOn": "a"
       },
       "geometry": {
         "coordinates": [
@@ -5698,7 +5737,8 @@
       "properties": {
         "featureid": "d3ce3714580cd308f31dedb05c3056d7",
         "title": "Arcadia",
-        "type": "leisure"
+        "type": "leisure",
+        "id": 120
       },
       "geometry": {
         "coordinates": [
@@ -5838,7 +5878,8 @@
       "properties": {
         "featureid": "acf2ebf4df3778c39e5347423fb04d27",
         "title": "The Fade Factory",
-        "type": "leisure"
+        "type": "leisure",
+        "id": 164
       },
       "geometry": {
         "coordinates": [
@@ -5884,7 +5925,8 @@
       "id": "a7a1433946f74637601c0615a7156904",
       "type": "Feature",
       "properties": {
-        "featureid": "a7a1433946f74637601c0615a7156904"
+        "featureid": "a7a1433946f74637601c0615a7156904",
+        "id": 164
       },
       "geometry": {
         "coordinates": [
@@ -6179,7 +6221,8 @@
       "id": 116,
       "type": "Feature",
       "properties": {
-        "featureid": "a68a3086df0d8a89bb57369f7d50e713"
+        "featureid": "a68a3086df0d8a89bb57369f7d50e713",
+        "id": 198
       },
       "geometry": {
         "coordinates": [
@@ -6323,7 +6366,8 @@
       "id": 120,
       "type": "Feature",
       "properties": {
-        "featureid": "268f7fd5b29e5c6a3d85eebd7c21d4d0"
+        "featureid": "268f7fd5b29e5c6a3d85eebd7c21d4d0",
+        "id": 226
       },
       "geometry": {
         "coordinates": [
@@ -6821,7 +6865,9 @@
       "id": "a9cfc149c8f83252bf20677a0bf3d175",
       "type": "Feature",
       "properties": {
-        "featureid": "a9cfc149c8f83252bf20677a0bf3d175"
+        "featureid": "a9cfc149c8f83252bf20677a0bf3d175",
+        "id": 258,
+        "idEnd": 262
       },
       "geometry": {
         "coordinates": [
@@ -6878,7 +6924,7 @@
         "featureid": "f5c6eb7523695372f3d1e9119d73cb04",
         "title": "Signature 2",
         "type": "retail",
-        "id 256": ""
+        "id": 256
       },
       "geometry": {
         "coordinates": [
@@ -7041,7 +7087,8 @@
         "featureid": "db9cbd8603630f7285ec0e739a2be5b1",
         "title": "The Print Room",
         "type": "retail",
-        "id": 252
+        "id": 252,
+        "idAddOn": "a"
       },
       "geometry": {
         "coordinates": [
@@ -7087,7 +7134,8 @@
       "id": 134,
       "type": "Feature",
       "properties": {
-        "featureid": "08a51ac907e921baa5814cd7c20998a3"
+        "featureid": "08a51ac907e921baa5814cd7c20998a3",
+        "id": 252
       },
       "geometry": {
         "coordinates": [
@@ -7136,6 +7184,7 @@
         "featureid": "7fc5bc0a4ba35616c5f56aa332c27a91",
         "title": "Chicks 'n' Wings",
         "type": "food",
+        "id": 339,
         "active": 0
       },
       "geometry": {
@@ -7378,7 +7427,8 @@
       "id": 137,
       "type": "Feature",
       "properties": {
-        "featureid": "fce97725dadcc332552b54999e9b2d1c"
+        "featureid": "fce97725dadcc332552b54999e9b2d1c",
+        "id": 395
       },
       "geometry": {
         "coordinates": [
@@ -7481,7 +7531,8 @@
       "id": "7f38588b239715ac24f5565eb936d6c6",
       "type": "Feature",
       "properties": {
-        "featureid": "7f38588b239715ac24f5565eb936d6c6"
+        "featureid": "7f38588b239715ac24f5565eb936d6c6",
+        "id": 375
       },
       "geometry": {
         "coordinates": [
@@ -7576,7 +7627,8 @@
       "properties": {
         "featureid": "3c4cfbf0ff439e1fb3436aae4f1fd89a",
         "title": "RBS",
-        "type": "retail"
+        "type": "retail",
+        "id": 78
       },
       "geometry": {
         "coordinates": [
@@ -7694,7 +7746,8 @@
       "properties": {
         "featureid": "3e83318e0cb124fedd69ea3b51c8e1f6",
         "title": "James & George Collie",
-        "type": "office"
+        "type": "office",
+        "id": 450
       },
       "geometry": {
         "coordinates": [
@@ -7939,6 +7992,7 @@
       "properties": {
         "featureid": "fe7205e126b39184a71c093f0e5150e9",
         "title": "Maharaj",
+        "active": 0,
         "type": "food",
         "id": 470
       },
@@ -8041,7 +8095,9 @@
       "properties": {
         "featureid": "4ab0298c17ff623a2b3a36851ac00c42",
         "title": "Sainsburys",
-        "type": "food"
+        "type": "food",
+        "id": 492,
+        "idEnd": 494
       },
       "geometry": {
         "coordinates": [
@@ -8285,7 +8341,9 @@
       "properties": {
         "featureid": "97f508f79afbf3733e9b688f1fe5428d",
         "title": "Duncan & Todd Opticians",
-        "type": "retail"
+        "type": "retail",
+        "id": 510,
+        "idEnd": 512
       },
       "geometry": {
         "coordinates": [
@@ -8333,7 +8391,8 @@
       "properties": {
         "featureid": "3f8caf6232dd7e00aec3c6433e8f19cc",
         "title": "Tulloch Recruitment",
-        "type": "office"
+        "type": "office",
+        "id": 508
       },
       "geometry": {
         "coordinates": [
@@ -8381,7 +8440,8 @@
       "properties": {
         "featureid": "f6f20dcd7fbdd201ba63c06199416070",
         "title": "McGintys",
-        "type": "food"
+        "type": "food",
+        "id": 504
       },
       "geometry": {
         "coordinates": [
@@ -8429,7 +8489,8 @@
       "properties": {
         "featureid": "7c990cd272c77d9e17b8527f3f27a06a",
         "title": "Enid Hutt Gallery",
-        "type": "retail"
+        "type": "retail",
+        "id": 500
       },
       "geometry": {
         "coordinates": [
@@ -8485,7 +8546,8 @@
       "properties": {
         "featureid": "5754a46ce6fe28c788cf3c387bcc69dc",
         "title": "Starbucks",
-        "type": "food"
+        "type": "food",
+        "id": 496
       },
       "geometry": {
         "coordinates": [
@@ -8891,7 +8953,9 @@
       "id": 164,
       "type": "Feature",
       "properties": {
-        "featureid": "b3c347ad51312880443da267eb5c46ed"
+        "featureid": "b3c347ad51312880443da267eb5c46ed",
+        "id": 207,
+        "idAddOn": "a"
       },
       "geometry": {
         "coordinates": [
@@ -9151,7 +9215,9 @@
       "properties": {
         "featureid": "144f92aaa9bb58250919ed364fd6558d",
         "title": "Burger King",
-        "type": "food"
+        "type": "food",
+        "id": 221,
+        "idEnd": 223
       },
       "geometry": {
         "coordinates": [
@@ -9201,7 +9267,8 @@
       "id": 170,
       "type": "Feature",
       "properties": {
-        "featureid": "183623eb5b025e046a19b9e83b39187e"
+        "featureid": "183623eb5b025e046a19b9e83b39187e",
+        "id": 225
       },
       "geometry": {
         "coordinates": [
@@ -9247,7 +9314,8 @@
       "id": 171,
       "type": "Feature",
       "properties": {
-        "featureid": "3f5745afd220a69cdef2a9e49301e424"
+        "featureid": "3f5745afd220a69cdef2a9e49301e424",
+        "id": 227
       },
       "geometry": {
         "coordinates": [
@@ -9293,7 +9361,8 @@
       "id": 172,
       "type": "Feature",
       "properties": {
-        "featureid": "1505137a316df496245a54876c2d7575"
+        "featureid": "1505137a316df496245a54876c2d7575",
+        "id": 229
       },
       "geometry": {
         "coordinates": [
@@ -9341,7 +9410,8 @@
       "properties": {
         "featureid": "c8f42986aa4f0a6d13314bc93ac81bbb",
         "title": "Mental Health Aberdeen",
-        "type": "retail"
+        "type": "retail",
+        "id": 231
       },
       "geometry": {
         "coordinates": [
@@ -9389,7 +9459,9 @@
       "properties": {
         "featureid": "78a5099abb8be52a978d0e767800a908",
         "title": "Amarone",
-        "type": "food"
+        "type": "food",
+        "id": 257,
+        "idEnd": 259
       },
       "geometry": {
         "coordinates": [
@@ -9437,7 +9509,8 @@
       "properties": {
         "featureid": "0995662fece4ebb797d57c6e6986561b",
         "title": "Vaping 101",
-        "type": "retail"
+        "type": "retail",
+        "id": 253
       },
       "geometry": {
         "coordinates": [
@@ -9485,7 +9558,8 @@
       "properties": {
         "featureid": "4c5749f4b725b37a4b76517ea804ceb2",
         "title": "Cruise",
-        "type": "retail"
+        "type": "retail",
+        "id": 247
       },
       "geometry": {
         "coordinates": [
@@ -9531,7 +9605,8 @@
       "id": "af31209c53d94c3fe5735a2c876645dd",
       "type": "Feature",
       "properties": {
-        "featureid": "af31209c53d94c3fe5735a2c876645dd"
+        "featureid": "af31209c53d94c3fe5735a2c876645dd",
+        "id": 195
       },
       "geometry": {
         "coordinates": [
@@ -9840,7 +9915,8 @@
         "featureid": "47ae391c0e088c441a79bc323a9f337f",
         "title": "Coral",
         "type": "leisure",
-        "id": "181b"
+        "id": 181,
+        "idAddOn": "b"
       },
       "geometry": {
         "coordinates": [
@@ -9897,7 +9973,8 @@
         "featureid": "eb7bacf064b4f59e691a06c329a53153",
         "title": "Merkur Slots",
         "type": "leisure",
-        "id": "181a"
+        "id": 181,
+        "idAddOn": "a"
       },
       "geometry": {
         "coordinates": [
@@ -9952,8 +10029,9 @@
       "type": "Feature",
       "properties": {
         "featureid": "69e81657f4460cc722cd7b72f728eaa9",
-        "title": "Shapla",
-        "type": "food"
+        "title": "Pad Thai Hotpot & Grill",
+        "type": "food",
+        "id": 189
       },
       "geometry": {
         "coordinates": [
@@ -10014,7 +10092,7 @@
         "featureid": "d0a1f067333fb49a7d5a20968679ef28",
         "title": "Edinburgh Woolen Mill",
         "type": "retail",
-        "iid": 187
+        "id": 187
       },
       "geometry": {
         "coordinates": [
@@ -10181,7 +10259,8 @@
         "featureid": "5729da51fc509b61c67090c636d2c1d6",
         "title": "Wild Ginger",
         "type": "food",
-        "id": "367"
+        "id": 367,
+        "idAddOn": "a"
       },
       "geometry": {
         "coordinates": [
@@ -10230,7 +10309,7 @@
         "featureid": "3cbf94b50d339eb596b1741ad11da34b",
         "title": "Six By Nico",
         "type": "food",
-        "id": "367"
+        "id": 367
       },
       "geometry": {
         "coordinates": [

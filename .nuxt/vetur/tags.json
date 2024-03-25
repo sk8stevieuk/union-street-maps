@@ -1,4 +1,7 @@
 {
+  "Loading": {
+    "description": "Auto imported from components/Loading.vue"
+  },
   "Sprite": {
     "description": "Auto imported from components/Sprite.vue"
   }
