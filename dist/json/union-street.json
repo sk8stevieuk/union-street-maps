@@ -127,7 +127,9 @@
       "type": "Feature",
       "properties": {
         "featureid": "bf64f7427651e99de81d49ebbc6a7021",
-        "id": 381
+        "id": 381,
+        "type": "office",
+        "title": "Skills Development Scotland"
       },
       "geometry": {
         "coordinates": [

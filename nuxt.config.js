@@ -47,6 +47,11 @@ export default {
           plugins: [tailwindTypography],
       }
   },
+  workbox: {
+      importScripts: [
+          'custom-sw.js'
+      ],
+  },
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss

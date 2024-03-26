@@ -248,6 +248,8 @@
     import json from "~/static/json/union-street.json";
     import shops from "~/static/json/shops.json";
 
+    import * as heat from "~/static/leaflet-heat.js";
+
     export default {
       name: 'IndexPage',
       head() {
@@ -350,6 +352,7 @@
                   if( typeof(feature.properties.id) == "number" ) {
                       html += feature.properties.id != null ? feature.properties.id : '';
                       html += feature.properties.idEnd != null ? " - " + feature.properties.idEnd : '';
+                      html += feature.properties.idAddOn != null ? feature.properties.idAddOn : '';
                       html += feature.properties.id != null ? ' Union Street' : '';
                   }
 
@@ -433,7 +436,7 @@
                           const foundShop = shops.data.find((element) => element.location == feature.properties.id);
 
                           if( foundShop != null ) {
-                              this.scoreShop(foundShop, feature.properties);
+                              this.scoreShop(foundShop, feature.properties, layer);
                               this.clickedShop = foundShop;
 
                               const detailsTab = document.querySelector('.item-details');
@@ -461,6 +464,11 @@
               this.userLat = position.coords.latitude;
               this.userLong = position.coords.longitude;
           });
+
+          // var heat = L.heatLayer([
+          // 	[50.5, 30.5, 0.2],
+          // 	[50.6, 30.4, 0.5],
+          // ], {radius: 25}).addTo(map);
       },
       methods:{
           getPosition(options) {
@@ -484,7 +492,7 @@
                   mapControl.classList.toggle('open');
               }
           },
-          scoreShop(shop, building = null) {
+          scoreShop(shop, building = null, layer = null) {
               let negativeTags = ['betting', 'gambling', 'fast food', 'fast fashion'];
               let positiveTags = ['museum', 'jewellery', 'watches'];
               let score = 0;
@@ -517,8 +525,16 @@
                   });
               }
 
-              console.log(score);
-              return score;
+              let output = [];
+
+              if( layer != null ) {
+                  output = [layer._bounds._northEast.lat, layer._bounds._northEast.lng, score]
+              } else {
+                  output = ['', '', score]
+              }
+
+              console.log(output);
+              return output;
           },
           search($event) {
               const search = $event.target.value;
