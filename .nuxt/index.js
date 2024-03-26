@@ -14,6 +14,9 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 import nuxt_plugin_plugin_144c5e37 from 'nuxt_plugin_plugin_144c5e37' // Source: ./components/plugin.js (mode: 'all')
 import nuxt_plugin_nuxtleaflet_f8d78750 from 'nuxt_plugin_nuxtleaflet_f8d78750' // Source: ./nuxt-leaflet.js (mode: 'client')
+import nuxt_plugin_workbox_f180ccae from 'nuxt_plugin_workbox_f180ccae' // Source: ./workbox.js (mode: 'client')
+import nuxt_plugin_metaplugin_611d27bc from 'nuxt_plugin_metaplugin_611d27bc' // Source: ./pwa/meta.plugin.js (mode: 'all')
+import nuxt_plugin_iconplugin_65c4cd30 from 'nuxt_plugin_iconplugin_65c4cd30' // Source: ./pwa/icon.plugin.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -185,6 +188,18 @@ async function createApp(ssrContext, config = {}) {
 
   if (process.client && typeof nuxt_plugin_nuxtleaflet_f8d78750 === 'function') {
     await nuxt_plugin_nuxtleaflet_f8d78750(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_workbox_f180ccae === 'function') {
+    await nuxt_plugin_workbox_f180ccae(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_metaplugin_611d27bc === 'function') {
+    await nuxt_plugin_metaplugin_611d27bc(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_iconplugin_65c4cd30 === 'function') {
+    await nuxt_plugin_iconplugin_65c4cd30(app.context, inject)
   }
 
   // Lock enablePreview in context

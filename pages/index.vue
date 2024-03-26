@@ -52,8 +52,14 @@
                        />
                      marker
                    </l-marker>
-                   <l-control class="example-custom-control">
-                      <div class="flex flex-col-reverse sm:flex-row items-end">
+                   <l-control class="map-control">
+                      <nav @click="toggleMenu($event)" class="show-controls">
+                          <span class="sr-only">Toggle Menu</span>
+                          <p>.</p>
+                          <p>.</p>
+                          <p>.</p>
+                      </nav>
+                      <div class="hidden lg:flex">
                            <div class="flex flex-row">
                                <form class="ml-2 sm:ml-0 sm:mr-4">
                                   <select class="p-2" v-model="typeFilter" :value="typeFilter" @change="toggleFilter($event)">
@@ -155,6 +161,68 @@
 
     path:focus {
         outline: none;
+    }
+
+    .map-control {
+        > div {
+            @apply flex flex-col-reverse sm:flex-row items-end;
+        }
+    }
+
+    .show-controls {
+        @apply hidden mt-2 justify-end mb-2;
+
+        &.expand {
+            > p:not(:first-of-type) {
+                @apply hidden;
+                width: 0;
+            }
+
+            > p:first-of-type {
+                @apply block w-12;
+            }
+        }
+
+        > p {
+            @apply border-4 border-black rounded-full w-4 h-4 transition;
+            font-size: 0;
+
+            &:not(:last-child) {
+                @apply mr-1
+            }
+        }
+    }
+
+    @media (max-width: 768px) and (orientation: landscape) {
+        .show-controls {
+            @apply flex
+        }
+
+        .map-control {
+            > div {
+                @apply hidden flex-col gap-2;
+
+                &.open {
+                    @apply flex;
+                }
+
+                > div {
+                    @apply flex-col items-end gap-2;
+
+                    > * {
+                        @apply mr-0;
+                    }
+                }
+
+                > ul {
+                    @apply flex flex-col w-auto;
+
+                    li {
+                        @apply mr-0;
+                    }
+                }
+            }
+        }
     }
 
     @keyframes blinker {
@@ -403,6 +471,18 @@
           closeDetails($event) {
               const detailsTab = document.querySelector('.item-details');
               detailsTab.classList.add('closed');
+          },
+          toggleMenu() {
+              const showControls = document.querySelector('.show-controls');
+              const mapControl = document.querySelector('.map-control > div');
+
+              if( showControls != null ) {
+                  showControls.classList.toggle('expand');
+              }
+
+              if( mapControl != null ) {
+                  mapControl.classList.toggle('open');
+              }
           },
           scoreShop(shop, building = null) {
               let negativeTags = ['betting', 'gambling', 'fast food', 'fast fashion'];
