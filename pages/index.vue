@@ -37,7 +37,12 @@
                 <a class="bg-purple-600 text-white px-4 py-2 rounded-xl" v-if="clickedShop != null && clickedShop.hasOwnProperty('url')" :href="clickedShop.url" target="_blank" rel="noopener nofollow noreferrer">View Property</a>
             </div>
         </div>
-        <div class="warning"><p><strong>Whoops!</strong> couldn't find what you are looking for</p></div>
+        <div class="warning">
+            <p><strong>Whoops!</strong>
+                <span v-if="warningMessage != null">{{ warningMessage }}</span>
+                <span v-else>couldn't find what you are looking for</span>
+            </p>
+        </div>
         <div v-if="$nuxt.isOnline" id="map-wrap" style="height: 100vh">
              <client-only>
                  <!-- <l-map ref="map" :zoom=zoom :minZoom="16" :center="center"> -->
@@ -60,6 +65,9 @@
                           <p>.</p>
                       </nav>
                       <div class="hidden lg:flex">
+                          <svg class="h-8 w-8 cursor-pointer hover:fill-red-700 mr-2" @click="createHeatMap($event)">
+                             <use href="#heatmap" />
+                          </svg>
                            <div class="flex flex-row">
                                <form class="ml-2 sm:ml-0 sm:mr-4">
                                   <select class="p-2" v-model="typeFilter" :value="typeFilter" @change="toggleFilter($event)">
@@ -261,6 +269,7 @@
       },
       data: () => ({
           loading: false,
+          warningMessage: null,
           zoom: 16,
           center: [57.14617607961514, -2.0990591687252156],
           geojson: json,
@@ -424,17 +433,26 @@
                                   const detailsTab = document.querySelector('.item-details');
                                   detailsTab.classList.remove('closed');
                               } else {
-                                  alert("couldnt find data for this unit");
+                                  let message = "couldnt find data for this unit";
+                                  this.createWarning(message);
                               }
 
                               this.loading = false;
+                          }).catch( error => {
+                              this.createWarning("You appear to be offline");
                           })
                       }
 
                       //Get the shop details from the shop.json file
                       if( feature.properties.id != null ) {
-                          const foundShop = shops.data.find((element) => element.location == feature.properties.id);
+                          let foundShop = shops.data.find((element) => element.location == feature.properties.id);
 
+                          //Check again incase of location being an array
+                          if( foundShop == null ) {
+                              foundShop = shops.data.find((element) => element.location.indexOf(feature.properties.id) > -1);
+                          }
+
+                          //Set the shop if found
                           if( foundShop != null ) {
                               this.scoreShop(foundShop, feature.properties, layer);
                               this.clickedShop = foundShop;
@@ -465,12 +483,21 @@
               this.userLong = position.coords.longitude;
           });
 
-          // var heat = L.heatLayer([
-          // 	[50.5, 30.5, 0.2],
-          // 	[50.6, 30.4, 0.5],
-          // ], {radius: 25}).addTo(map);
+          const worker = new Worker('/worker.js');
+          worker.postMessage("start");
       },
       methods:{
+          createWarning(message = null) {
+              this.loading = false;
+              this.warningMessage = message;
+
+              let warningDom = document.querySelector(".warning");
+              warningDom.classList.add('open');
+
+              setTimeout(() => {
+                  warningDom.classList.remove('open');
+              }, "4000");
+          },
           getPosition(options) {
               return new Promise(function(resolve, reject) {
                   navigator.geolocation.getCurrentPosition(resolve, reject, options)
@@ -493,7 +520,7 @@
               }
           },
           scoreShop(shop, building = null, layer = null) {
-              let negativeTags = ['betting', 'gambling', 'fast food', 'fast fashion'];
+              let negativeTags = ['betting', 'gambling', 'fast food', 'fast fashion', 'pound shop'];
               let positiveTags = ['museum', 'jewellery', 'watches'];
               let score = 0;
 
@@ -533,8 +560,38 @@
                   output = ['', '', score]
               }
 
-              console.log(output);
               return output;
+          },
+          createHeatMap($event) {
+              if( $event.target.classList.contains('open') ) {
+                  L.heatLayer().setLatLngs();
+              } else {
+                  let map = this.$refs.map.mapObject;
+                  let openRequest = indexedDB.open('shop-ratings', 2);
+
+                  openRequest.onsuccess = function() {
+                      let db = openRequest.result;
+                      const transaction = db.transaction(["shops"], "readwrite");
+                      const objectStore = transaction.objectStore("shops");
+
+                      const rq = objectStore.getAll().onsuccess = function(event) {
+                          let scores = event.target.result;
+
+                          let data = [];
+
+                          scores.forEach((score) => {
+                              let shop = [score.lat, score.lng, score.score]
+                              data.push(shop);
+                          })
+
+                          console.log("adding heat layer to map...");
+                          console.log(data);
+                          var heat = L.heatLayer(data, {radius: 25}).addTo(map);
+                      };
+                  };
+              }
+
+              $event.target.classList.toggle('open');
           },
           search($event) {
               const search = $event.target.value;
@@ -602,31 +659,6 @@
                   }
                   return;
               })
-
-              if( !found ) {
-                  // map.eachLayer((layer) => {
-                  //     if( found == false && layer.feature != null && layer.feature.properties.title != null ) {
-                  //         let title = String(layer.feature.properties.title).toLowerCase();
-                  //         if( title.includes(search) ) {
-                  //             found = true;
-                  //
-                  //             let position = layer._bounds._northEast;
-                  //             this.zoom = 18;
-                  //             this.center = position;
-                  //
-                  //             if (layer.getTooltip()) {
-                  //                 const tooltip = layer.getTooltip();
-                  //                 if (tooltip._content != null) {
-                  //                     layer.unbindTooltip().bindTooltip(tooltip, {
-                  //                         permanent: false,
-                  //                         opacity: 1
-                  //                     }).openTooltip()
-                  //                 }
-                  //             }
-                  //         }
-                  //     }
-                  // })
-              }
 
               if( !found ) {
                   let warningDom = document.querySelector(".warning");

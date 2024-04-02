@@ -9,9 +9,6 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   build: {
-      /*
-       ** You can extend webpack config here
-       */
       extend(config, ctx) {}
   },
   generate: {
@@ -48,6 +45,9 @@ export default {
       }
   },
   workbox: {
+      "enabled": true,
+      "offline": false,
+      "swUrl": '/static/custom-sw.js',
       importScripts: [
           'custom-sw.js'
       ],

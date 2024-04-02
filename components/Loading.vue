@@ -7,16 +7,22 @@
             </span>
             <p>Fetching data...</p>
         </div>
+        <div class="overlay">
+        </div>
     </div>
 </template>
 
 <style>
     .loading {
-        @apply fixed h-full w-full inset-0 bg-white/75 flex items-center justify-center;
+        @apply fixed h-full w-full inset-0 flex items-center justify-center;
         z-index: 1001;
 
-        > div {
-            @apply flex items-center font-bold;
+        > div:first-child {
+            @apply z-20 flex items-center font-bold bg-white p-12 rounded-xl shadow-lg;
+        }
+
+        .overlay {
+            @apply absolute inset-0 h-full w-full bg-white/50;
         }
     }
 </style>
