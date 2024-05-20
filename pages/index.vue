@@ -46,7 +46,7 @@
         <div v-if="$nuxt.isOnline" id="map-wrap" style="height: 100vh">
              <client-only>
                  <!-- <l-map ref="map" :zoom=zoom :minZoom="16" :center="center"> -->
-                 <l-map ref="map" :zoom=zoom :minZoom="16" :maxBounds="[[57.14846225825293, -2.117965603492106], [57.14130992049215, -2.092060045100244]]" :center="center">
+                 <l-map ref="map" :zoom=zoom :minZoom="16" :maxBounds="[[57.174906612695196, -2.1849617982336436], [57.12663629692961, -2.0511597805452606]]" :center="center">
                    <l-tile-layer :url="mapLayer"></l-tile-layer>
                    <l-geo-json :geojson="geojson" :options="options" :options-style="styleFunction"></l-geo-json>
                    <l-marker v-if="userLat && userLong" :lat-lng="[userLat,userLong]">
@@ -467,6 +467,7 @@
       },
       async mounted() {
           const connection = navigator.connection;
+          const itemDetails = document.querySelector('.item-details');
 
           //Get the users current position
           const position = this.getPosition()
@@ -478,11 +479,22 @@
                   console.error(err.message)
               })
 
+          //Set the users position to variables
           const watchPosition = navigator.geolocation.watchPosition((position) => {
               this.userLat = position.coords.latitude;
               this.userLong = position.coords.longitude;
           });
 
+          //Close details on screen click
+          document.addEventListener('click', function(e){
+              if( itemDetails.classList.contains('closed') == false ) {
+                  if( e.target.classList.contains('leaflet-container') || e.target.classList.contains('leaflet-heatmap-layer') ) {
+                      itemDetails.classList.add('closed');
+                  }
+              }
+          })
+
+          //Send shop scoring to web worker
           const worker = new Worker('/worker.js');
           worker.postMessage("start");
       },
