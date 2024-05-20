@@ -1,5 +1,5 @@
-let negativeTags = ['betting', 'gambling', 'fast food', 'fast fashion', 'pound shop'];
-let positiveTags = ['museum', 'jewellery', 'watches'];
+let negativeTags = ['betting', 'gambling', 'fast food', 'fast fashion', 'pound shop', 'estate agents', "chain"];
+let positiveTags = ['museum', 'jewellery', 'watches', 'fashion', 'music', 'record shop', 'arcade', 'outdoor seating', 'outdoors', 'kitchenware'];
 
 let shops;
 let geojson;
@@ -41,13 +41,34 @@ async function getJson() {
     });
 }
 
+function centroid(coords) {
+    var signedArea = 0;
+    var x = 0;
+    var y = 0;
+
+    for (var i = 0; i < coords.length - 1; i++) {
+         var temp = (coords[i][0] * coords[i + 1][1]) - (coords[i + 1][0] * coords[i][1]);
+
+         signedArea += temp;
+         x += (coords[i][0] + coords[i + 1][0]) * temp;
+         y += (coords[i][1] + coords[i + 1][1]) * temp;
+     }
+
+    signedArea *= 0.5;
+    x /= 6 * signedArea;
+    y /= 6 * signedArea;
+
+    let output = [x, y]
+    return output;
+}
+
 function sortShops(shops, geojson) {
     console.log("Rating shops in background...");
 
     shops.forEach(shop => {
-        let score = 0;
+        let score = 0.5;
         let foundShop = geojson.find( (element) => element.properties.id == shop.location );
-        let coOrdinates = [null, null]
+        let centre = [null, null]
 
         //try again in case location is an array
         if( foundShop == null && Array.isArray(shop.location) ) {
@@ -55,13 +76,22 @@ function sortShops(shops, geojson) {
         }
 
         if( foundShop != null ) {
-            const coOrdIndex = Math.floor(foundShop.geometry.coordinates[0].length / 2);
-            coOrdinates = foundShop.geometry.coordinates[0][coOrdIndex];
+            centre = centroid(foundShop.geometry.coordinates[0]);
+
+            //Mark down for being office
+            if( foundShop.properties.type == "office" ) {
+                score = score - 0.1;
+            }
+
+            //Add to score for being mixed use
+            if( foundShop.properties.type == "mixed" ) {
+                score = score + 0.1;
+            }
         }
 
         //Add to score for being local company
         if( shop.local != null && shop.local ) {
-            score = score + 1;
+            score = score + 0.1;
         }
 
         //Check the shop tags
@@ -72,22 +102,27 @@ function sortShops(shops, geojson) {
 
             tags.forEach((tag) => {
                 if( negativeTags.indexOf(tag.toLowerCase()) != -1 && foundNegative == false ) {
-                    score = score - 1;
+                    score = score - 0.1;
                     foundNegative = true;
                 }
 
                 if( positiveTags.indexOf(tag.toLowerCase()) != -1 && foundPositive == false ) {
-                    score = score + 1;
+                    score = score + 0.1;
                     foundPositive = true;
                 }
             });
         }
 
+        //Set to minimum if not active
+        if( shop.active == 0 ) {
+            score = 0.1;
+        }
+
         let output = {
             title: foundShop.properties.title,
             id: foundShop.properties.id,
-            lat: coOrdinates[1],
-            lng: coOrdinates[0],
+            lat: centre[1],
+            lng: centre[0],
             score: score
         };
 
