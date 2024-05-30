@@ -17,9 +17,19 @@ async function getJson() {
     request.onupgradeneeded = (event) => {
         console.log("Creating IndexDB Database...");
         const db = event.target.result;
+
+        //Create IndexDB tables
         const objectStore = db.createObjectStore("shops", { keyPath: "id" });
+        const detailsStore = db.createObjectStore("details", { keyPath: "id" });
+
+        //Create the columns for the shops table
         objectStore.createIndex("title", "title", { unique: false });
         objectStore.createIndex("id", "id", { unique: true });
+
+        //Create the columns for the details table
+        detailsStore.createIndex("title", "title", { unique: false });
+        detailsStore.createIndex("value", "value", { unique: false });
+        detailsStore.createIndex("id", "id", { unique: true });
     };
 
     //Get the shops json file
@@ -35,6 +45,7 @@ async function getJson() {
                         geojson = res.features;
 
                         sortShops(shops, geojson);
+                        createDetails(shops, geojson);
                     }
               });
           }
@@ -60,6 +71,79 @@ function centroid(coords) {
 
     let output = [x, y]
     return output;
+}
+
+function createDetails(shops, geojson) {
+    const totalUnits = geojson.length;
+    let retailUnits = 0;
+    let leisureUnits = 0;
+    let foodUnits = 0;
+    let hotelUnits = 0;
+    let officeUnits = 0;
+    let mixedUnits = 0;
+    let emptyUnits = 0;
+
+    console.log(geojson);
+
+    //Loop through units and get their category
+    geojson.forEach(shop => {
+        if( shop.hasOwnProperty('properties') ) {
+            if( shop.properties.hasOwnProperty('type') && shop.properties.type != null ) {
+                const category = shop.properties.type;
+
+                switch (category) {
+                    case 'retail':
+                        retailUnits = retailUnits + 1;
+                        break;
+                    case 'leisure':
+                        leisureUnits = leisureUnits + 1;
+                        break;
+                    case 'food':
+                        foodUnits = foodUnits + 1;
+                        break;
+                    case 'hotel':
+                        hotelUnits = hotelUnits + 1;
+                        break;
+                    case 'office':
+                        officeUnits = officeUnits + 1;
+                        break;
+                    case 'mixed':
+                        mixedUnits = mixedUnits + 1;
+                        break;
+                    default:
+                       emptyUnits = emptyUnits + 1;
+                }
+            } else {
+                emptyUnits = emptyUnits + 1;
+            }
+        }
+    });
+
+    let output = [
+      { title: "Total Units", id: "1", value: totalUnits },
+      { title: "Retail Units", id: "2", value: retailUnits },
+      { title: "Leisure Units", id: "3", value: leisureUnits },
+      { title: "Food & Drink Units", id: "4", value: foodUnits },
+      { title: "Hotels Units", id: "5", value: hotelUnits },
+      { title: "Mixed Use Units", id: "6", value: mixedUnits },
+      { title: "Office Units", id: "7", value: officeUnits },
+      { title: "Empty Units", id: "8", value: emptyUnits },
+    ];
+
+    let r = indexedDB.open('shop-ratings', 2);
+
+    r.onsuccess = function() {
+        let db = r.result;
+        const transaction = db.transaction(["details"], "readwrite");
+        const detailsStore = transaction.objectStore("details");
+
+        output.forEach( row => {
+            const rq = detailsStore.add(row);
+            rq.onsuccess = (event) => {
+              console.log("added to indexedDB");
+            };
+        });
+    };
 }
 
 function sortShops(shops, geojson) {

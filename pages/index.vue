@@ -13,18 +13,19 @@
                 <span class="sr-only">Close</span>
                 &#10006;
             </button>
-            <div class="relative top-4">
+            <div class="relative top-4 p-6">
                 <h2 class="sr-only">Shop Details</h2>
                 <div class="shop-media relative">
-                    <img v-if="clickedShop && clickedShop.image != null" class="mb-2" :src="clickedShop.image" width="320px" height="240px">
-                    <img v-else-if="clickedShop && clickedShop.cropUrl != null" class="w-full mb-2" :src="clickedShop.cropUrl" width="320px" height="240px">
+                    <img v-if="clickedShop && clickedShop.image != null" class="w-full mb-4" :src="clickedShop.image" width="320px" height="240px">
+                    <img v-else-if="clickedShop && clickedShop.cropUrl != null" class="w-full mb-4" :src="clickedShop.cropUrl" width="320px" height="240px">
                 </div>
                 <h3 v-if="clickedShop != null" class="text-2xl font-bold">
                     {{ clickedShop.title }}
-                    <svg v-if="clickedShop && clickedShop.local" class="fill-red-600 inline-block align-bottom h-8 w-8">
+                    <svg v-if="clickedShop && clickedShop.local" class="float-right fill-red-600 inline-block align-bottom h-8 w-8">
                         <use href="#heart" />
                     </svg>
                 </h3>
+                <small v-if="clickedShop && clickedShop.distance != null">{{ clickedShop.distance }} miles away</small>
                 <p v-if="clickedShop != null && clickedShop.location && typeof(clickedShop.location) == 'number'" class="text-gray-400">
                     {{ clickedShop.location }} Union Street, Aberdeen
                 </p>
@@ -65,9 +66,6 @@
                           <p>.</p>
                       </nav>
                       <div class="hidden lg:flex">
-                          <svg class="h-8 w-8 cursor-pointer hover:fill-red-700 mr-2" @click="createHeatMap($event)">
-                             <use href="#heatmap" />
-                          </svg>
                            <div class="flex flex-row">
                                <form class="ml-2 sm:ml-0 sm:mr-4">
                                   <select class="p-2" v-model="typeFilter" :value="typeFilter" @change="toggleFilter($event)">
@@ -82,7 +80,6 @@
                                       <option value="empty">Empty Units</option>
                                   </select>
                                </form>
-                               <input type="text" class="p-2 ml-2 sm:ml-0 sm:mr-4" @change="search($event)" name="search" placeholder="search">
                            </div>
                            <ul id="key" class="text-right bg-white p-2 flex flex-wrap w-3/4 sm:w-full mb-2 sm:mb-0">
                                <li class="mr-3"><span class="mr-1" :style="'background-color:' + retailColor + ';color:' + retailColor + ';'">....</span>Retail</li>
@@ -127,7 +124,7 @@
         right: -100%;
     }
     .tabs-wrapper {
-        @apply flex gap-2 mt-4;
+        @apply flex gap-2 mt-4 items-center flex-wrap;
 
         > li {
             @apply border border-purple-600 text-purple-600 rounded-full text-sm py-1 px-2;
@@ -260,12 +257,17 @@
 
     export default {
       name: 'IndexPage',
+      layout: 'default',
+
       head() {
         return {
           script: [
             { src: '/leaflet-patterns.js' }
           ]
         }
+      },
+      created() {
+          this.$root.$refs.index = this;
       },
       data: () => ({
           loading: false,
@@ -448,8 +450,14 @@
                           let foundShop = shops.data.find((element) => element.location == feature.properties.id);
 
                           //Check again incase of location being an array
-                          if( foundShop == null ) {
-                              foundShop = shops.data.find((element) => element.location.indexOf(feature.properties.id) > -1);
+                          if( foundShop == null) {
+                              shops.data.forEach((element) => {
+                                  if( Array.isArray(element.location) ) {
+                                      if( element.location.indexOf(feature.properties.id) > -1 ) {
+                                          foundShop = element;
+                                      }
+                                  }
+                              });
                           }
 
                           //Set the shop if found
@@ -605,20 +613,90 @@
 
               $event.target.classList.toggle('open');
           },
+          distanceBetweenPoints(lat1, lon1, lat2, lon2) {
+            const R = 6378137; //Radius of the earth in km
+            const x = (lon2-lon1) * Math.cos((lat1+lat2)/2);
+            const y = (lat2-lat1);
+            let d = Math.sqrt(x*x + y*y) * R;
+            d = d / 160934.4; // convert to miles
+
+            return d.toFixed(2);
+          },
+          reCenterMap(position, layer) {
+              const map = this.$refs.map.mapObject;
+              const zoom = 18;
+              this.center = position;
+
+              map.panTo(position, zoom);
+
+              if (layer.getTooltip()) {
+                  const tooltip = layer.getTooltip();
+                  if (tooltip._content != null) {
+                      layer.unbindTooltip().bindTooltip(tooltip, {
+                          permanent: false,
+                          opacity: 1
+                      }).openTooltip()
+                  }
+              }
+          },
+          updateLayers(foundShop) {
+              const map = this.$refs.map.mapObject;
+
+              //Set the nearest shop as the position
+              if( foundShop.hasOwnProperty("locationDistances") ) {
+                  const distances = Object.values(foundShop.locationDistances);
+                  let index = distances.indexOf(Math.min(...distances));
+
+                  //set the closest shops distance in the shop object.
+                  foundShop.distance = parseFloat(foundShop.locationDistances[index]).toFixed(2);
+
+                  map.eachLayer((l) => {
+                      if( l.hasOwnProperty('feature') ) {
+                          if( l.feature.hasOwnProperty('properties') ) {
+                              if( l.feature.properties.hasOwnProperty('id') ) {
+                                  if( l.feature.properties.id == foundShop.location[index] ) {
+                                      if( l.hasOwnProperty('_bounds') ) {
+                                          let position = l._bounds._northEast;
+                                          this.reCenterMap(position, l);
+
+                                          //Found a shop, then display details
+                                          if( foundShop != null ) {
+                                              this.clickedShop = foundShop;
+
+                                              const detailsTab = document.querySelector('.item-details');
+                                              detailsTab.classList.remove('closed');
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  });
+              }
+          },
           search($event) {
               const search = $event.target.value;
               const map = this.$refs.map.mapObject;
               const regex = new RegExp('^[0-9]+$');
+              const nav = document.querySelector('.main-nav');
               let found = false;
+              let hasUserLocation = false;
+
+              this.loading = true;
+              nav.classList.remove('open');
 
               let isNumber = regex.test(search);
+
+              if( this.userLat != null ) {
+                  hasUserLocation = true;
+              }
 
               this.warning = false;
 
               String.prototype.fuzzy = function (s) {
                   var hay = this.toLowerCase(), i = 0, n = -1, l;
                   s = s.toLowerCase();
-                  for (; l = s[i++] ;) if (!~(n = hay.indexOf(l, n + 1))) return false;
+                  for (; l = s[i++] ;) if(!~(n = hay.indexOf(l, n + 1))) return false;
                   return true;
               };
 
@@ -637,49 +715,101 @@
                           found = true;
                       }
 
+                      let position = layer._bounds._northEast;
+
                       if( found ) {
-                          let position = layer._bounds._northEast;
-                          this.zoom = 18;
-                          this.center = position;
-
-                          map.panTo(position, this.zoom);
-
-                          if (layer.getTooltip()) {
-                              const tooltip = layer.getTooltip();
-                              if (tooltip._content != null) {
-                                  layer.unbindTooltip().bindTooltip(tooltip, {
-                                      permanent: false,
-                                      opacity: 1
-                                  }).openTooltip()
-                              }
-                          }
-
                           //open the sidebar for content
                           if( layer.feature.properties.id != null ) {
                               console.log('searching...');
-                              const foundShop = shops.data.find((element) => element.location == layer.feature.properties.id);
+                              let foundShop = shops.data.find((element) => element.location == layer.feature.properties.id);
 
-                              if( foundShop != null ) {
-                                  console.log("found in shops.json file");
-                                  this.clickedShop = foundShop;
+                              //check if location is an array
+                              if( foundShop == null ) {
+                                  console.log("Searching again, but using an array...");
+                                  foundShop = shops.data.find((element) => {
+                                      if( Array.isArray(element.location) ) {
+                                          if(element.location.includes(layer.feature.properties.id)) {
+                                              if( this.userLat != null ) {
+                                                  element.locationDistances = [];
 
-                                  const detailsTab = document.querySelector('.item-details');
-                                  detailsTab.classList.remove('closed');
+                                                  element.location.forEach((location, index) => {
+                                                      let geocodingUrl = "https://nominatim.openstreetmap.org/search?format=jsonv2&q=" + location + " union street aberdeen";
+
+                                                      let data = fetch(geocodingUrl,{
+                                                          method: 'GET',
+                                                          headers:{
+                                                            "Content-Type":'application/json'
+                                                          }
+                                                      }).then(res => res.json()).then(res => {
+                                                          const latitude = parseFloat(res[0].lat);
+                                                          const longitude = parseFloat(res[0].lon);
+
+                                                          let distance = this.distanceBetweenPoints(this.userLat, this.userLong, latitude, longitude);
+                                                          distance = parseFloat(distance);
+
+                                                          element.locationDistances.push(distance);
+                                                      }).then(e => {
+                                                          if( index == (element.location.length - 1) ) {
+                                                              this.updateLayers(foundShop);
+                                                          }
+                                                      }).catch( error => {
+                                                          this.createWarning("You appear to be offline");
+                                                      })
+                                                  });
+                                              }
+                                              return true;
+                                          }
+                                      }
+                                  });
+                              } else {
+                                  this.reCenterMap(position, layer);
+
+                                  //Found a shop, then display details
+                                  if( foundShop != null ) {
+                                      if(this.userLat != null) {
+                                          let geocodingUrl = "https://nominatim.openstreetmap.org/search?format=jsonv2&q=" + foundShop.title + " union street aberdeen";
+
+                                          console.log(geocodingUrl);
+
+                                          let data = fetch(geocodingUrl,{
+                                              method: 'GET',
+                                              headers:{
+                                                "Content-Type":'application/json'
+                                              }
+                                          }).then(res => res.json()).then(res => {
+                                              const latitude = parseFloat(res[0].lat);
+                                              const longitude = parseFloat(res[0].lon);
+
+                                              let distance = this.distanceBetweenPoints(this.userLat, this.userLong, latitude, longitude);
+                                              console.log(distance);
+
+                                              foundShop.distance = distance;
+                                              this.clickedShop = foundShop;
+                                          }).catch( error => {
+                                              this.createWarning("You appear to be offline");
+                                          })
+                                      } else {
+                                          this.clickedShop = foundShop;
+                                      }
+
+                                      const detailsTab = document.querySelector('.item-details');
+                                      detailsTab.classList.remove('closed');
+                                  }
                               }
                           }
+                      } else if( isNumber && found == false ) {
+                          let message = "That number doesn't appear to be a building number.";
+                          this.createWarning(message);
                       }
                   }
                   return;
               })
 
               if( !found ) {
-                  let warningDom = document.querySelector(".warning");
-                  warningDom.classList.add('open');
-
-                  setTimeout(() => {
-                      warningDom.classList.remove('open');
-                  }, "4000");
+                this.createWarning();
               }
+
+              this.loading = false;
           },
           menuClick($event) {
               const navType = $event.target.innerText.toLowerCase();

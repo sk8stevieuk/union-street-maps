@@ -1,6 +1,12 @@
 {
+  "Buycoffee": {
+    "description": "Auto imported from components/Buycoffee.vue"
+  },
   "Loading": {
     "description": "Auto imported from components/Loading.vue"
+  },
+  "Navigation": {
+    "description": "Auto imported from components/Navigation.vue"
   },
   "Sprite": {
     "description": "Auto imported from components/Sprite.vue"

@@ -1,4 +1,6 @@
+export { default as Buycoffee } from '../../components/Buycoffee.vue'
 export { default as Loading } from '../../components/Loading.vue'
+export { default as Navigation } from '../../components/Navigation.vue'
 export { default as Sprite } from '../../components/Sprite.vue'
 
 // nuxt/nuxt.js#8607

@@ -24,8 +24,8 @@
           "id": 24,
           "active": 1,
           "title": "Starbucks",
-          "description": "",
-          "image": "",
+          "description": "Starbucks Corporation is an American multinational chain of coffeehouses and roastery reserves headquartered in Seattle, Washington. It was founded in 1971, and is currently the world's largest coffeehouse chain.",
+          "image": "https://seekcolors.com/wp-content/uploads/2022/01/Starbucks-Coffee-01.svg",
           "location": [208, 496],
           "local": 0,
           "tags": ["Coffee", "Takeaway", "Chain"]

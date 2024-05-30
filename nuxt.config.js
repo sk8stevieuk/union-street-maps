@@ -17,7 +17,7 @@ export default {
   components: true,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'maps',
+    title: 'Union Street Maps',
     htmlAttrs: {
       lang: 'en'
     },

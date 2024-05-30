@@ -6371,7 +6371,9 @@
       "type": "Feature",
       "properties": {
         "featureid": "268f7fd5b29e5c6a3d85eebd7c21d4d0",
-        "id": 226
+        "id": 226,
+        "title": "Lolo+Co",
+        "type": "retail"
       },
       "geometry": {
         "coordinates": [
@@ -7846,8 +7848,6 @@
       "type": "Feature",
       "properties": {
         "featureid": "3be2cc2a72044d6e51d072fe17679bda",
-        "title": "Fit & Skin Studio",
-        "type": "leisure",
         "id": 440
       },
       "geometry": {
@@ -7998,7 +7998,7 @@
       "properties": {
         "featureid": "fe7205e126b39184a71c093f0e5150e9",
         "title": "Maharaj",
-        "active": 0,
+        "active": 1,
         "type": "food",
         "id": 470
       },
