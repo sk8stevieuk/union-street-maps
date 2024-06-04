@@ -2,7 +2,11 @@
     <section class="container mx-auto">
         <h1>Report a Problem</h1>
         <p></p>
-        <form name="problem" method="POST" netlify>
+        <form name="problem" method="POST" netlify-honeypot="winnie" netlify>
+            <fieldset>
+                <input type="text" name="winnue" id="winnie" style="left:-100%;visisbility:hidden;">
+                <label for="name">Screen Readers ignore this</label>
+            </fieldset>
             <fieldset>
                 <input type="text" name="name" id="name">
                 <label for="name">Name</label>
