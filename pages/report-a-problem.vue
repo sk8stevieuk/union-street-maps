@@ -3,8 +3,9 @@
         <h1>Report a Problem</h1>
         <p></p>
         <form name="problem" method="POST" netlify-honeypot="winnie" netlify>
-            <fieldset>
-                <input type="text" name="winnue" id="winnie" style="left:-100%;visisbility:hidden;">
+            <input type="hidden" name="form-name" value="problem">
+            <fieldset class="winnie-field">
+                <input type="text" name="winnue" id="winnie">
                 <label for="name">Screen Readers ignore this</label>
             </fieldset>
             <fieldset>
@@ -43,6 +44,12 @@
 
     [type='submit'] {
         @apply bg-black;
+    }
+
+    .winnie-field {
+        @apply relative;
+        left: -200%;
+        max-height: 1px;
     }
 
     fieldset {
