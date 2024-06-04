@@ -2,7 +2,7 @@
     <section class="container mx-auto">
         <h1>Report a Problem</h1>
         <p></p>
-        <form name="problem" method="POST" data-netlify="true">
+        <form name="problem" method="POST" netlify>
             <fieldset>
                 <input type="text" name="name" id="name">
                 <label for="name">Name</label>
@@ -23,7 +23,7 @@
                 <textarea rows="4" required name="message" id="message"></textarea>
                 <label for="message">Message</label>
             </fieldset>
-            <button class="btn-primary">Submit message</button>
+            <button type="submit" class="btn-primary">Submit message</button>
         </form>
     </section>
 </template>
@@ -35,6 +35,10 @@
         > button {
             @apply bg-black text-white rounded-full px-4 py-2;
         }
+    }
+
+    [type='submit'] {
+        @apply bg-black;
     }
 
     fieldset {

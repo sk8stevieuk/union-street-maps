@@ -1,8 +1,5 @@
 <template>
     <div class="relative overflow-hidden">
-        <Sprite />
-        <Loading v-if="loading" />
-
         <!-- <nav v-if="$nuxt.isOnline" id="map-nav" class="flex justify-evenly">
             <div tabindex="0" role="button" aria-pressed="false" @click="menuClick($event)" class="nav-btn border-r">West</div>
             <div tabindex="0" role="button" aria-pressed="false" @click="menuClick($event)" class="nav-btn border-r">Central</div>

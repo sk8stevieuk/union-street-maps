@@ -1,5 +1,7 @@
 <template>
     <div>
+        <Sprite />
+        <Loading v-if="loading" />
         <Nuxt />
         <Navigation />
     </div>
