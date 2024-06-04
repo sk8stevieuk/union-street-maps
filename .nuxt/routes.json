@@ -1,5 +1,12 @@
 [
   {
+    "name": "report-a-problem",
+    "path": "/report-a-problem",
+    "component": "/Users/stevenbedford/Documents/Git Projects/union-street-maps/pages/report-a-problem.vue",
+    "chunkName": "pages/report-a-problem",
+    "_name": "_54f42bcb"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "/Users/stevenbedford/Documents/Git Projects/union-street-maps/pages/index.vue",

@@ -6,9 +6,14 @@
             <p></p>
         </div>
         <nav class="main-nav">
-            <button class="nav-toggle float-right" @click="navClick($event)">X</button>
+            <button class="nav-toggle float-right" @click="navClick($event)">
+                <span class="sr-only">Close menu</span>
+                <svg class="h-6 w-6">
+                    <use href="#cross" />
+                </svg>
+            </button>
             <h1 class="text-3xl font-bold">Save Union Street</h1>
-            <div class="flex flex-col justify-end items-baseline gap-16 h-full">
+            <div class="flex flex-col justify-end items-baseline gap-16 pb-8 h-full">
                 <div class="w-full">
                     <label for="search" class="font-bold">Search Union Street for:</label>
                     <input type="text" class="p-2 mt-1 w-full" id="search" @change="search($event)" name="search" placeholder="search">
@@ -36,12 +41,12 @@
 
 <style>
     :root {
-        --hamburger-width: 28px;
-        --hamburger-height: 6px;
+        --hamburger-width: 24px;
+        --hamburger-height: 4px;
     }
 
     .main-nav {
-        @apply fixed top-0 h-full w-full md:w-1/2 lg:w-1/3 bg-white p-6 transition-all;
+        @apply fixed top-0 h-full w-full md:w-1/2 lg:w-1/3 bg-white p-6 shadow-xl transition-all;
         left: -100%;
         z-index: 1001;
     }
@@ -51,7 +56,7 @@
     }
 
     .hamburger {
-        @apply fixed top-0 left-0 rounded-full bg-white p-2 ml-14 mt-2;
+        @apply fixed top-0 right-0 rounded-full bg-white p-2 m-4 shadow-xl;
         z-index: 1001;
 
         &:hover {
@@ -64,7 +69,7 @@
             height: var(--hamburger-height);
 
             &:not(:last-child) {
-                margin-bottom: calc(var(--hamburger-height) / 2);
+                margin-bottom: calc(var(--hamburger-height) / 1.25);
             }
         }
     }

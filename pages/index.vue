@@ -11,7 +11,9 @@
         <div class="item-details closed">
             <button class="float-right hover:scale-125" @click="closeDetails($event)">
                 <span class="sr-only">Close</span>
-                &#10006;
+                <svg class="h-6 w-6">
+                    <use href="#cross" />
+                </svg>
             </button>
             <div class="relative top-4 p-6">
                 <h2 class="sr-only">Shop Details</h2>
@@ -58,7 +60,7 @@
                        />
                      marker
                    </l-marker>
-                   <l-control class="map-control">
+                   <l-control class="map-control" position="bottomright">
                       <nav @click="toggleMenu($event)" class="show-controls">
                           <span class="sr-only">Toggle Menu</span>
                           <p>.</p>
@@ -109,7 +111,7 @@
     }
 
     .item-details {
-        @apply shadow-xl h-full w-full sm:w-1/2 right-0 absolute bg-white p-6 pb-12 transition-all duration-500 overflow-y-scroll;
+        @apply shadow-xl h-full w-full sm:w-1/2 left-0 absolute bg-white p-6 pb-12 transition-all duration-500 overflow-y-scroll;
         z-index:1001;
         max-height: 100vh;
     }
@@ -121,7 +123,7 @@
       animation-fill-mode: forwards;
     }
     .closed {
-        right: -100%;
+        left: -100%;
     }
     .tabs-wrapper {
         @apply flex gap-2 mt-4 items-center flex-wrap;
@@ -432,8 +434,7 @@
                               if( res.data != null && res.data.length > 0 ) {
                                   this.clickedShop = res.data[0];
 
-                                  const detailsTab = document.querySelector('.item-details');
-                                  detailsTab.classList.remove('closed');
+                                  this.openDetails();
                               } else {
                                   let message = "couldnt find data for this unit";
                                   this.createWarning(message);
@@ -465,8 +466,7 @@
                               this.scoreShop(foundShop, feature.properties, layer);
                               this.clickedShop = foundShop;
 
-                              const detailsTab = document.querySelector('.item-details');
-                              detailsTab.classList.remove('closed');
+                              this.openDetails();
                           }
                       }
                   });
@@ -522,6 +522,16 @@
               return new Promise(function(resolve, reject) {
                   navigator.geolocation.getCurrentPosition(resolve, reject, options)
               })
+          },
+          openDetails($event) {
+              const detailsTab = document.querySelector('.item-details');
+              const menu = document.querySelector('.main-nav');
+
+              //Close the menu
+              menu.classList.remove('open');
+
+              //Open the details tab
+              detailsTab.classList.remove('closed');
           },
           closeDetails($event) {
               const detailsTab = document.querySelector('.item-details');
@@ -663,8 +673,7 @@
                                           if( foundShop != null ) {
                                               this.clickedShop = foundShop;
 
-                                              const detailsTab = document.querySelector('.item-details');
-                                              detailsTab.classList.remove('closed');
+                                              this.openDetails();
                                           }
                                       }
                                   }
@@ -716,6 +725,7 @@
                       }
 
                       let position = layer._bounds._northEast;
+                      let recenter = true;
 
                       if( found ) {
                           //open the sidebar for content
@@ -729,13 +739,16 @@
                                   foundShop = shops.data.find((element) => {
                                       if( Array.isArray(element.location) ) {
                                           if(element.location.includes(layer.feature.properties.id)) {
+
                                               if( this.userLat != null ) {
                                                   element.locationDistances = [];
 
-                                                  element.location.forEach((location, index) => {
-                                                      let geocodingUrl = "https://nominatim.openstreetmap.org/search?format=jsonv2&q=" + location + " union street aberdeen";
+                                                  recenter = false;
 
-                                                      let data = fetch(geocodingUrl,{
+                                                  element.location.forEach((location, index) => {
+                                                      let geocodingUrl = encodeURI("https://nominatim.openstreetmap.org/search?format=jsonv2&q=" + location + " union street aberdeen");
+
+                                                      let data = fetch(geocodingUrl, {
                                                           method: 'GET',
                                                           headers:{
                                                             "Content-Type":'application/json'
@@ -748,20 +761,25 @@
                                                           distance = parseFloat(distance);
 
                                                           element.locationDistances.push(distance);
+                                                          foundShop = element;
+
+                                                      }).catch( error => {
+                                                          this.createWarning("There was an issue getting distance data");
                                                       }).then(e => {
                                                           if( index == (element.location.length - 1) ) {
                                                               this.updateLayers(foundShop);
                                                           }
-                                                      }).catch( error => {
-                                                          this.createWarning("You appear to be offline");
-                                                      })
+                                                      });
                                                   });
+                                              } else {
+                                                  recenter = true;
                                               }
-                                              return true;
                                           }
                                       }
                                   });
-                              } else {
+                              }
+
+                              if( recenter ) {
                                   this.reCenterMap(position, layer);
 
                                   //Found a shop, then display details
@@ -792,8 +810,7 @@
                                           this.clickedShop = foundShop;
                                       }
 
-                                      const detailsTab = document.querySelector('.item-details');
-                                      detailsTab.classList.remove('closed');
+                                      this.openDetails();
                                   }
                               }
                           }
