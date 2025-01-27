@@ -1,7 +1,6 @@
 <template>
     <section class="container mx-auto">
-        <h1>Report a Problem</h1>
-        <p></p>
+        <Header :title="'Report a Problem'" />
         <form name="problem" method="POST" netlify-honeypot="winnie" netlify>
             <input type="hidden" name="form-name" value="problem">
             <fieldset class="winnie-field">
@@ -34,41 +33,10 @@
 </template>
 
 <style>
-    form {
-        @apply flex flex-col items-baseline w-full gap-4;
-
-        > button {
-            @apply bg-black text-white rounded-full px-4 py-2;
-        }
-    }
-
-    [type='submit'] {
-        @apply bg-black;
-    }
-
     .winnie-field {
         @apply relative;
         left: -200%;
         max-height: 1px;
-    }
-
-    fieldset {
-        @apply flex flex-col w-full;
-
-        > label {
-            order: 1;
-            @apply font-bold;
-        }
-
-        > input, textarea, select {
-          order: 2;
-          @apply border rounded p-2 mt-1 w-full;
-        }
-    }
-
-    input:not(:required) + label:after, textarea:not(:required) + label:after, select:not(:required) + label:after {
-        content: "(Optional)";
-        @apply float-right opacity-50 italic;
     }
 </style>
 

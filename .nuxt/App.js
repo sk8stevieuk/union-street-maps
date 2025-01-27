@@ -6,7 +6,7 @@ import NuxtError from './components/nuxt-error.vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
-import '../node_modules/@nuxtjs/tailwindcss/dist/runtime/tailwind.css'
+import '../node_modules/tailwindcss/tailwind.css'
 
 import '../node_modules/leaflet/dist/leaflet.css'
 

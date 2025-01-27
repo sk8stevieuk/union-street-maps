@@ -15,23 +15,26 @@
             <div class="relative top-4 p-6">
                 <h2 class="sr-only">Shop Details</h2>
                 <div class="shop-media relative">
-                    <img v-if="clickedShop && clickedShop.image != null" class="w-full mb-4" :src="clickedShop.image" width="320px" height="240px">
+                    <img v-if="clickedShop && clickedShop.Image != null" class="w-full mb-4" :src="clickedShop.Image" width="320px" height="240px">
                     <img v-else-if="clickedShop && clickedShop.cropUrl != null" class="w-full mb-4" :src="clickedShop.cropUrl" width="320px" height="240px">
                 </div>
                 <h3 v-if="clickedShop != null" class="text-2xl font-bold">
-                    {{ clickedShop.title }}
-                    <svg v-if="clickedShop && clickedShop.local" class="float-right fill-red-600 inline-block align-bottom h-8 w-8">
+                    {{ clickedShop.Title }}
+                    <svg v-if="clickedShop && clickedShop.Local" class="float-right fill-red-600 inline-block align-bottom h-8 w-8">
                         <use href="#heart" />
                     </svg>
                 </h3>
-                <small v-if="clickedShop && clickedShop.distance != null">{{ clickedShop.distance }} miles away</small>
-                <p v-if="clickedShop != null && clickedShop.location && typeof(clickedShop.location) == 'number'" class="text-gray-400">
-                    {{ clickedShop.location }} Union Street, Aberdeen
+                <p v-if="clickedShop != null && clickedShop.Number && typeof(clickedShop.Number) == 'number'" class="mt-2 text-gray-500">
+                    {{ clickedShop.Number }} Union Street, Aberdeen
                 </p>
-                <div class="prose mt-4" v-if="clickedShop != null && clickedShop.hasOwnProperty('description')" v-html="clickedShop.description"></div>
+                <p v-else-if="clickedShop.locationIndex != null" class="mt-2 text-gray-500">
+                    {{ clickedShop.location[clickedShop.locationIndex] }} Union Street, Aberdeen
+                </p>
+                <small v-if="clickedShop && clickedShop.distance != null" class="text-gray-500">{{ clickedShop.distance }} miles away</small>
+                <div class="prose mt-4" v-if="clickedShop != null && clickedShop.hasOwnProperty('Description')" v-html="clickedShop.Description"></div>
                 <ul class="tabs-wrapper">
-                    <li v-if="clickedShop != null && clickedShop.hasOwnProperty('tags')" v-for="(tag, tagIndex) in clickedShop.tags">
-                        {{ tag }}
+                    <li v-if="clickedShop != null && clickedShop.hasOwnProperty('Tags')" v-for="(tag, tagIndex) in clickedShop.Tags">
+                        {{ tags[tag] }}
                     </li>
                 </ul>
                 <a class="bg-purple-600 text-white px-4 py-2 rounded-xl" v-if="clickedShop != null && clickedShop.hasOwnProperty('url')" :href="clickedShop.url" target="_blank" rel="noopener nofollow noreferrer">View Property</a>
@@ -109,7 +112,7 @@
 
     .item-details {
         @apply shadow-xl h-full w-full sm:w-1/2 left-0 absolute bg-white p-6 pb-12 transition-all duration-500 overflow-y-scroll;
-        z-index:1001;
+        z-index:1002;
         max-height: 100vh;
     }
 
@@ -250,14 +253,13 @@
 
 <script>
     import json from "~/static/json/union-street.json";
-    import shops from "~/static/json/shops.json";
+    // import shops from "~/static/json/shops.json";
 
     import * as heat from "~/static/leaflet-heat.js";
 
     export default {
       name: 'IndexPage',
       layout: 'default',
-
       head() {
         return {
           script: [
@@ -284,6 +286,8 @@
           mixedColor: "#d946ef",
           typeFilter: null,
           clickedShop: [],
+          shops: [],
+          tags: [],
           apiBaseUrl: process.env.API_BASE_URL,
           mapLayer: process.env.MAP_LAYER
       }),
@@ -313,6 +317,7 @@
                   let opacity = 0.7;
                   let clickedShop = null;
                   let classes = "";
+                  let shops = this.shops;
 
                   // Set the colours based on property type
                   if( feature.properties.type != null ) {
@@ -421,7 +426,8 @@
                           let url = this.apiBaseUrl + 'getunit.json?auth=' + auth + '&id=' + feature.properties.id;
 
                           //Try and fetch the data
-                          this.loading = true;
+                          this.$nuxt.$emit("updateLoading", true);
+
                           let data = fetch(url,{
                               method: 'GET',
                               headers:{
@@ -437,7 +443,7 @@
                                   this.createWarning(message);
                               }
 
-                              this.loading = false;
+                              this.$nuxt.$emit("updateLoading", false);
                           }).catch( error => {
                               this.createWarning("You appear to be offline");
                           })
@@ -445,13 +451,16 @@
 
                       //Get the shop details from the shop.json file
                       if( feature.properties.id != null ) {
-                          let foundShop = shops.data.find((element) => element.location == feature.properties.id);
+                          let foundShop = shops.find((shop) => shop.Number == feature.properties.id);
 
                           //Check again incase of location being an array
                           if( foundShop == null) {
-                              shops.data.forEach((element) => {
-                                  if( Array.isArray(element.location) ) {
-                                      if( element.location.indexOf(feature.properties.id) > -1 ) {
+                              shops.forEach((element) => {
+                                  let location = element.Number.split(", ");
+                                  if( Array.isArray(location) && location.length > 1 ) {
+                                      let id = feature.properties.id.toString();
+
+                                      if( location.includes(id) ) {
                                           foundShop = element;
                                       }
                                   }
@@ -473,6 +482,28 @@
       async mounted() {
           const connection = navigator.connection;
           const itemDetails = document.querySelector('.item-details');
+
+          let shopStorage = localStorage.getItem('shops');
+          let tagStorage = localStorage.getItem('tags');
+
+          if( shopStorage != null ) {
+             this.shops = JSON.parse(shopStorage);
+          } else {
+             this.fetchData();
+          }
+
+          if( tagStorage != null ) {
+             let tags = JSON.parse(tagStorage);
+             let tagArray = [];
+
+             tags.forEach((tag) => {
+                 tagArray[tag.id] = tag.name
+             });
+
+             this.tags = tagArray;
+          } else {
+             this.fetchTags();
+          }
 
           //Get the users current position
           const position = this.getPosition()
@@ -504,8 +535,109 @@
           worker.postMessage("start");
       },
       methods:{
+          async fetchData(offset = 0) {
+             console.log("fetching shop data...");
+             this.loading = true;
+
+             //Generate Url
+             let baseUrl = 'https://api.airtable.com/v0/';
+             const appId = process.env.APP_ID;
+             const tableId = process.env.SHOPS_ID;
+             let url = baseUrl + appId + "/" + tableId;
+
+             //Add query to url
+             url += '?sort%5B0%5D%5Bfield%5D=Number&sort%5B0%5D%5Bdirection%5D=asc';
+
+             if( this.offset != null ) {
+                 url += "&offset=" + this.offset;
+             }
+
+             let items = [];
+             let totalAmount = 0;
+
+             let labels = [];
+             let dataPoints = [];
+
+             let rows = await fetch(url,{
+                 method: 'GET',
+                 headers:{
+                   "Authorization":'Bearer ' + process.env.AIRTABLE_TOKEN
+                 }
+             }).then(res => res.json()).then(res => {
+                let records = res.records;
+                let cleanRecords = [];
+
+                //Go through the records and create clean array
+                records.forEach((record) => {
+                    let fields = record.fields;
+                    cleanRecords.push(fields);
+                });
+
+                //Save the results in local storage
+                localStorage.setItem('shops', JSON.stringify(cleanRecords));
+                this.shops = cleanRecords;
+
+                this.loading = false;
+             })
+          },
+          async fetchTags(offset = 0) {
+             console.log("fetching Tags data...");
+             this.loading = true;
+
+             //Generate Url
+             let baseUrl = 'https://api.airtable.com/v0/';
+             const appId = process.env.APP_ID;
+             const tableId = process.env.TAGS_ID;
+             let url = baseUrl + appId + "/" + tableId;
+
+             if( this.offset != null ) {
+                 url += "&offset=" + this.offset;
+             }
+
+             let items = [];
+             let totalAmount = 0;
+
+             let labels = [];
+             let dataPoints = [];
+
+             let rows = await fetch(url,{
+                 method: 'GET',
+                 headers:{
+                   "Authorization":'Bearer ' + process.env.AIRTABLE_TOKEN
+                 }
+             }).then(res => res.json()).then(res => {
+                let records = res.records;
+                let cleanRecords = [];
+                let tagArray = [];
+
+                //Go through the records and create clean array
+                records.forEach((record) => {
+                    let id = record.id
+                    let name = record.fields.Name
+                    let level = record.fields.Level
+                    let parent = record.fields.Parent
+
+
+                    let object = {
+                        id: id,
+                        name: name,
+                        level: level,
+                        parent: parent
+                    }
+                    tagArray[id] = name;
+
+                    cleanRecords.push(object);
+                });
+
+                //Save the results in local storage
+                localStorage.setItem('tags', JSON.stringify(cleanRecords));
+                this.tags = tagArray;
+
+                this.loading = false;
+             })
+          },
           createWarning(message = null) {
-              this.loading = false;
+              this.$nuxt.$emit("updateLoading", false);
               this.warningMessage = message;
 
               let warningDom = document.querySelector(".warning");
@@ -682,13 +814,14 @@
           },
           search($event) {
               const search = $event.target.value;
+              let shops = this.shops;
               const map = this.$refs.map.mapObject;
               const regex = new RegExp('^[0-9]+$');
               const nav = document.querySelector('.main-nav');
               let found = false;
               let hasUserLocation = false;
 
-              this.loading = true;
+              this.$nuxt.$emit("updateLoading", true);
               nav.classList.remove('open');
 
               let isNumber = regex.test(search);
@@ -728,21 +861,21 @@
                           //open the sidebar for content
                           if( layer.feature.properties.id != null ) {
                               console.log('searching...');
-                              let foundShop = shops.data.find((element) => element.location == layer.feature.properties.id);
+                              let foundShop = shops.find((element) => element.location == layer.feature.properties.id);
 
                               //check if location is an array
                               if( foundShop == null ) {
                                   console.log("Searching again, but using an array...");
-                                  foundShop = shops.data.find((element) => {
+                                  foundShop = shops.find((element) => {
                                       if( Array.isArray(element.location) ) {
-                                          if(element.location.includes(layer.feature.properties.id)) {
+                                          if(element.Number.includes(layer.feature.properties.id)) {
 
                                               if( this.userLat != null ) {
                                                   element.locationDistances = [];
 
                                                   recenter = false;
 
-                                                  element.location.forEach((location, index) => {
+                                                  element.Number.forEach((location, index) => {
                                                       let geocodingUrl = encodeURI("https://nominatim.openstreetmap.org/search?format=jsonv2&q=" + location + " union street aberdeen");
 
                                                       let data = fetch(geocodingUrl, {
@@ -757,13 +890,14 @@
                                                           let distance = this.distanceBetweenPoints(this.userLat, this.userLong, latitude, longitude);
                                                           distance = parseFloat(distance);
 
+                                                          element.locationIndex = index;
                                                           element.locationDistances.push(distance);
                                                           foundShop = element;
 
                                                       }).catch( error => {
                                                           this.createWarning("There was an issue getting distance data");
                                                       }).then(e => {
-                                                          if( index == (element.location.length - 1) ) {
+                                                          if( index == (element.Number.length - 1) ) {
                                                               this.updateLayers(foundShop);
                                                           }
                                                       });
@@ -819,11 +953,67 @@
                   return;
               })
 
+              //Check if the search term is a category
               if( !found ) {
+                let findCategory = this.searchByCategory(search);
                 this.createWarning();
               }
 
-              this.loading = false;
+              this.$nuxt.$emit("updateLoading", false);
+          },
+          searchByCategory(search) {
+              let shops = JSON.parse(localStorage.getItem('shops'));
+              let tagStorage = JSON.parse(localStorage.getItem('tags'));
+              let foundTag = tagStorage.find((tag) => tag.name.toLowerCase() == search);
+
+              if( foundTag != null ) {
+                  // let foundShop = shops.find((shop) => shop.Tags.includes(foundTag.id));
+
+                  //Get all the shops with the tag searched
+                  let shopsWithTag = [];
+
+                  shops.forEach((shop, index) => {
+                      if( shop.Tags.includes(foundTag.id) ) {
+                          let geocodingUrl = "https://nominatim.openstreetmap.org/search?format=jsonv2&q=" + shop.Title + " union street aberdeen";
+                          let distance = "";
+
+                          let data = fetch(geocodingUrl,{
+                              method: 'GET',
+                              headers:{
+                                "Content-Type":'application/json'
+                              }
+                          }).then(res => res.json()).then(res => {
+                              const latitude = parseFloat(res[0].lat);
+                              const longitude = parseFloat(res[0].lon);
+
+                              distance = this.distanceBetweenPoints(this.userLat, this.userLong, latitude, longitude);
+                              shop.locationIndex = 0;
+                              shop.locationDistances = [];
+                              shop.locationDistances.push(distance);
+                              shop.distance = distance;
+                          }).catch( error => {
+                              this.createWarning("You appear to be offline");
+                          })
+
+                          shopsWithTag.push(shop);
+                      }
+                  })
+
+                  if( shopsWithTag.length > 1 ) {
+                      let min = shopsWithTag.reduce(function(previousValue, currentValue) {
+                          return (parseFloat(currentValue.distance) < parseFloat(previousValue.distance) ? currentValue : previousValue);
+                      });
+                      console.log(min);
+                  } else {
+                      let foundShop = shopsWithTag[0];
+                      console.log(foundShop);
+                      // this.clickedShop = foundShop;
+                      // this.openDetails();
+                  }
+              } else {
+                  return false;
+              }
+
           },
           menuClick($event) {
               const navType = $event.target.innerText.toLowerCase();

@@ -199,7 +199,7 @@ export async function setContext (app, context) {
       payload: context.payload,
       error: context.error,
       base: app.router.options.base,
-      env: {"API_AUTH_KEY":"monehdons","API_BASE_URL":"https://www.ourunionstreet.com/api/","MAP_LAYER":"https://api.mapbox.com/styles/v1/hamptons-total/ckebav9h012yc19qvzeym7gnn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGFtcHRvbnMtdG90YWwiLCJhIjoiY2tlMWVqNTltNDRsZzMzbXFvemo4ZXI3NCJ9.zIkqM3siiOhPbGKKRJA3tg"}
+      env: {"API_AUTH_KEY":"monehdons","API_BASE_URL":"https://www.ourunionstreet.com/api/","MAP_LAYER":"https://api.mapbox.com/styles/v1/hamptons-total/ckebav9h012yc19qvzeym7gnn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaGFtcHRvbnMtdG90YWwiLCJhIjoiY2tlMWVqNTltNDRsZzMzbXFvemo4ZXI3NCJ9.zIkqM3siiOhPbGKKRJA3tg","AIRTABLE_TOKEN":"pattEtVRW1aWVrAFo.0de1ba2a4d1afa140b116185989baf009ca27684a888c20eb0d94b4bc8d755f5","AIRTABLE_URL":"https://api.airtable.com/v0/","APP_ID":"appOJvxuCEDDaa92w","SHOPS_ID":"tbl1UyDG8VxlfLy3J","TAGS_ID":"tblhhq84Dlhv0hxcW"}
     }
     // Only set once
 

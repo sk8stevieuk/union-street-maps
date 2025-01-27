@@ -7188,10 +7188,10 @@
       "type": "Feature",
       "properties": {
         "featureid": "7fc5bc0a4ba35616c5f56aa332c27a91",
-        "title": "Chicks 'n' Wings",
+        "title": "Union Kebab House",
         "type": "food",
         "id": 339,
-        "active": 0
+        "active": 1
       },
       "geometry": {
         "coordinates": [
@@ -7434,7 +7434,9 @@
       "type": "Feature",
       "properties": {
         "featureid": "fce97725dadcc332552b54999e9b2d1c",
-        "id": 395
+        "id": 395,
+        "title": "Thistle Tavern",
+        "type": "retail"
       },
       "geometry": {
         "coordinates": [
@@ -9368,7 +9370,9 @@
       "type": "Feature",
       "properties": {
         "featureid": "1505137a316df496245a54876c2d7575",
-        "id": 229
+        "id": 229,
+        "type": "leisure",
+        "title": "Chaiiwala"
       },
       "geometry": {
         "coordinates": [

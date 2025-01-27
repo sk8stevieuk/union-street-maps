@@ -22,7 +22,7 @@
         }
 
         .overlay {
-            @apply absolute inset-0 h-full w-full bg-white/50;
+            @apply absolute inset-0 h-full w-full bg-black/50;
         }
     }
 </style>

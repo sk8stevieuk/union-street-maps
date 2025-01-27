@@ -1,10 +1,24 @@
 [
   {
+    "name": "report",
+    "path": "/report",
+    "component": "/Users/stevenbedford/Documents/Git Projects/union-street-maps/pages/report.vue",
+    "chunkName": "pages/report",
+    "_name": "_cf4e9936"
+  },
+  {
     "name": "report-a-problem",
     "path": "/report-a-problem",
     "component": "/Users/stevenbedford/Documents/Git Projects/union-street-maps/pages/report-a-problem.vue",
     "chunkName": "pages/report-a-problem",
     "_name": "_54f42bcb"
+  },
+  {
+    "name": "stores",
+    "path": "/stores",
+    "component": "/Users/stevenbedford/Documents/Git Projects/union-street-maps/pages/stores.vue",
+    "chunkName": "pages/stores",
+    "_name": "_5d3912e3"
   },
   {
     "name": "index",

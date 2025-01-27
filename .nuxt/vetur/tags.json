@@ -2,6 +2,9 @@
   "Buycoffee": {
     "description": "Auto imported from components/Buycoffee.vue"
   },
+  "Header": {
+    "description": "Auto imported from components/Header.vue"
+  },
   "Loading": {
     "description": "Auto imported from components/Loading.vue"
   },
