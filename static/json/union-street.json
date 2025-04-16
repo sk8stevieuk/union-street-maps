@@ -1582,8 +1582,6 @@
       "type": "Feature",
       "properties": {
         "featureid": "00e92d79773c240a83da8d5e14284410",
-        "title": "Dizzy's",
-        "type": "retail",
         "id": 85
       },
       "geometry": {
@@ -4717,7 +4715,9 @@
       "type": "Feature",
       "properties": {
         "featureid": "86684d96c840cf786375a6f1e03e02d2",
-        "id": 121
+        "id": 121,
+        "type": "food",
+        "title": "Popeyes"
       },
       "geometry": {
         "coordinates": [
@@ -7634,8 +7634,6 @@
       "type": "Feature",
       "properties": {
         "featureid": "3c4cfbf0ff439e1fb3436aae4f1fd89a",
-        "title": "RBS",
-        "type": "retail",
         "id": 78
       },
       "geometry": {

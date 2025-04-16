@@ -1,5 +1,5 @@
 <template>
-    <section class="container mx-auto">
+    <section class="container mx-auto px-12">
         <Header :title="'Stores'" />
         <div v-if="showError" class="error">
             <svg class="fill-current h-5 w-5">
@@ -7,7 +7,7 @@
             </svg>
             <p>{{ errorMessage }}</p>
         </div>
-        <form class="flex flex-row items-center justify-end gap-4 mb-8">
+        <form class="flex flex-row items-center justify-end gap-4 mb-8 flex-wrap-reverse">
             <fieldset class="checkbox flex">
                 <input type="checkbox" id="local-checkbox" name="local" class="w-auto mr-1" @change="filterList($event)">
                 <label for="local-checkbox">Local only?</label>
@@ -18,6 +18,12 @@
             </fieldset>
             <fieldset class="w-auto">
                 <label for="filter-category" class="sr-only">Filter by category</label>
+                <!-- <datalist id="test">
+                    <select v-for="topLevelItem in topLevelTags" :label="topLevelItem.name">
+                        <option v-if="tag.level != 1 && tag.parent == topLevelItem.id" v-for="tag in tagsRaw" :value="tag.id">{{ tag.name }}</option>
+                    </select>
+                </datalist>
+                <input type="text" @change="filterList($event)" list="test"> -->
                 <select id="filter-category" @change="filterList($event)" class="w-auto">
                     <option disabled selected value="null">Filter by category</option>
                     <option value="">All</option>
